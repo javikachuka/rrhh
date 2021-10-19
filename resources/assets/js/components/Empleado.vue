@@ -4,7 +4,7 @@
 
     <div class="container-fluid">
       <!-- Ejemplo de tabla Listado -->
-      <div class="card">
+      <div class="card mt-2">
         <div class="card-header">
           <div class="row justify-content-between">
             <h3>Empleados</h3>
@@ -414,7 +414,7 @@
                 <button
                   type="button"
                   v-if="modificar == 0"
-                  class="btn btn-success"
+                  class="btn btn-primary"
                   @click="registrarEmpleado()"
                 >
                   Guardar

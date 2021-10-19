@@ -4,7 +4,7 @@
 
     <div class="container-fluid">
       <!-- Ejemplo de tabla Listado -->
-      <div class="card">
+      <div class="card mt-2">
         <div class="card-header">
            <div class="row justify-content-between"> 
              <h3>
@@ -74,7 +74,7 @@
                   <button
                     type="button"
                     @click="abrirModal('empresa', 'actualizar', empresa)"
-                    class="btn btn-info btn-sm"
+                    class="btn btn-dark btn-sm"
                   >
                     <i class="icon-pencil"></i>
                   </button>

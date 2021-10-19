@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="row">
-        <h1>Home</h1>
+        <h1>Bienvenido</h1>
       </div>
       <br />
       <div class="col-md-8">
