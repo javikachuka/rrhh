@@ -4,9 +4,9 @@
 
     <div class="container-fluid">
       <!-- Ejemplo de tabla Listado -->
-      <div class="card mt-2">
-        <div class="card-header">
-          <div class="row justify-content-between">
+      <div class="card mt-2 rounded">
+        <div class="card-header rounded">
+          <div class="row justify-content-between rounded">
             <h3>Empleados</h3>
             <button
               v-if="listado == 1"
@@ -20,7 +20,7 @@
         </div>
         <!-- Listado-->
         <template v-if="listado == 1">
-          <div class="card-body">
+          <div class="card-body rounded">
             <!-- <div class="form-group row">
               <div class="col-md-6">
                 <div class="input-group">
@@ -48,8 +48,8 @@
                 </div>
               </div>
             </div> -->
-            <div class="table-responsive">
-              <table class="table table-bordered table-striped table-sm">
+            <div class="table-responsive rounded">
+              <table class="table table-bordered table-striped table-sm rounded">
                 <thead>
                   <tr>
                     <th>Cuil</th>
@@ -195,12 +195,12 @@
               </div>
               <div class="col-md-4">
                 <b><label>Nombre (*)</label></b>
-                <input type="text" class="form-control" v-model="nombre" />
+                <input type="text" class="form-control rounded" v-model="nombre" />
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <b><label>Apellido (*)</label></b>
-                  <input type="text" class="form-control" v-model="apellido" />
+                  <input type="text" class="form-control rounded" v-model="apellido" />
                 </div>
               </div>
 
@@ -212,7 +212,7 @@
                     id="numero"
                     @keyup="valida()"
                     v-model="cuil"
-                    class="form-control form-control-sm"
+                    class="form-control rounded"
                     maxlength="11"
                   />
                 </div>
@@ -221,7 +221,7 @@
                 <div class="form-group">
                   <b><label>Estado Civil (*)</label> </b>
 
-                  <select v-model="estadoCivil" class="form-control">
+                  <select v-model="estadoCivil" class="form-control rounded">
                     <option disabled value="">Estado Civil</option>
                     <option value="Soltero/a">Soltero/a</option>
                     <option value="Casado/a">Casado/a</option>
@@ -234,7 +234,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <b><label>Dirección (*)</label> </b>
-                  <input type="text" class="form-control" v-model="direccion" />
+                  <input type="text" class="form-control rounded" v-model="direccion" />
                 </div>
               </div>
               <div class="col-md-3">
@@ -242,7 +242,7 @@
                   <b><label>Fecha de Nacimiento (*)</label> </b>
                   <input
                     type="date"
-                    class="form-control"
+                    class="form-control rounded"
                     v-model="fechaNacimiento"
                     name="fechaNacimiento"
                     id="fechaNacimiento"
@@ -253,7 +253,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <b><label>Fecha de de Ingreso (*)</label> </b>
-                  <input type="date" class="form-control" v-model="fechaAlta" />
+                  <input type="date" class="form-control rounded" v-model="fechaAlta" />
                 </div>
               </div>
 
@@ -291,22 +291,22 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Nombre (*)</label>
+                  <b><label>Nombre (*)</label></b>
 
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control rounded"
                     v-model="nombreContacto"
                   />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Telefono (*)</label>
+                  <b><label>Telefono (*)</label></b>
 
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control rounded"
                     v-model="telefono1"
                     placeholder=""
                     maxlength="10"

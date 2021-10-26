@@ -4,8 +4,8 @@
 
     <div class="container-fluid">
       <!-- Ejemplo de tabla Listado -->
-      <div class="card mt-2">
-        <div class="card-header">
+      <div class="card mt-2 rounded">
+        <div class="card-header rounded">
            <div class="row justify-content-between"> 
              <h3>
                Empresas
@@ -19,7 +19,7 @@
               </button>
            </div>
         </div>
-        <div class="card-body">
+        <div class="card-body rounded">
           <div class="form-group row">
             <div class="col-md-6">
               <!-- <div class="input-group">
@@ -43,7 +43,7 @@
               </div> -->
             </div>
           </div>
-          <table class="table table-bordered table-striped table-sm">
+          <table class="table table-bordered table-striped table-sm rounded">
             <thead>
               <tr>
                 <th>Nombre</th>
@@ -159,14 +159,14 @@
               class="form-horizontal"
             >
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="text-input"
+                <label class="col-md-3 form-control-label rounded" for="text-input"
                   >Nombre (*)</label
                 >
                 <div class="col-md-9">
                   <input
                     type="text"
                     v-model="nombre"
-                    class="form-control"
+                    class="form-control rounded"
                     placeholder="Nombre de la empresa"
                   />
                 </div>
@@ -179,7 +179,7 @@
                   <input
                     type="text"
                     v-model="razonSocial"
-                    class="form-control"
+                    class="form-control rounded"
                     placeholder="Razon Social de la empresa"
                   />
                 </div>
@@ -192,7 +192,7 @@
                   <input
                     type="text"
                     v-model="cuit"
-                    class="form-control"
+                    class="form-control rounded"
                     placeholder="CUIT"
                   />
                 </div>
@@ -205,7 +205,7 @@
                   <input
                     type="text"
                     v-model="direccion"
-                    class="form-control"
+                    class="form-control rounded"
                     placeholder="Direccion"
                   />
                 </div>
@@ -215,7 +215,7 @@
                 <div class="col-md-9">
                   <input
                     type="date"
-                    class="form-control"
+                    class="form-control rounded"
                     v-model="inicioActividad"
                   />
                 </div>
