@@ -78,7 +78,7 @@
                       <button
                         type="button"
                         @click="modificarEmpleado(empleado)"
-                        class="btn btn-info btn-sm"
+                        class="btn btn-dark btn-sm"
                       >
                         <i class="icon-pencil"></i>
                       </button>
@@ -86,7 +86,7 @@
                       <template v-if="empleado.condicion">
                         <button
                           type="button"
-                          class="btn btn-info btn-sm"
+                          class="btn btn-dark btn-sm"
                           @click="desactivarEmpleado(empleado.id)"
                         >
                           <i class="icon-trash"></i>
@@ -95,7 +95,7 @@
                       <template v-else>
                         <button
                           type="button"
-                          class="btn btn-info btn-sm"
+                          class="btn btn-dark btn-sm"
                           @click="activarEmpleado(empleado.id)"
                         >
                           <i class="icon-check"></i>
