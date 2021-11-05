@@ -41,14 +41,18 @@
             </button> -->
             <ul class="nav navbar-nav d-md-down-none">
                 <li  @click="menu=0" class="nav-item px-3">
+                    <h6>Sistema de Nóminas</h6>
+                </li>
+                <li> </li>
+                <li  @click="menu=0" class="nav-item pl-4">
                     <a class="nav-link" href="#">Home</a>
                 </li>
-                <li  @click="menu=1" class="nav-item px-3">
+                <!-- <li  @click="menu=1" class="nav-item px-3">
                     <a class="nav-link" href="#">Empleados</a>
                 </li>
                 <li   @click="menu='empresa'" class="nav-item px-3">
                     <a class="nav-link" href="#">Empresas</a>
-                </li>
+                </li> -->
 
                 
             </ul>
@@ -66,7 +70,7 @@
         </header>
 
         <div class="app-body">
-            <!-- @include('plantilla.sidebar') -->
+            @include('plantilla.sidebar')
 
             <!-- Contenido Principal -->
             @yield('contenido')
