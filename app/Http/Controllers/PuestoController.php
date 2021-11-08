@@ -26,13 +26,13 @@ class PuestoController extends Controller
         if ($buscar=='') {
             $puestos = Puesto::join('departamentos','puestos.departamento_id','=','departamentos.id')
             ->select('puestos.*', 'departamentos.nombre as nombreDepartamento')
-              ->orderBy('puestos.nombre', 'desc')->paginate(3);
+              ->orderBy('puestos.nombre', 'desc')->paginate(10);
            
         } else {
             $puestos = Puesto::join('departamentos','puestos.departamento_id','=','departamentos.id')
             ->select('puestos.*', 'departamentos.nombre as nombreDepartamento')
              ->where('puestos.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('puestos.nombre', 'desc')->paginate(3);
+            ->orderBy('puestos.nombre', 'desc')->paginate(10);
         }
          
         return [

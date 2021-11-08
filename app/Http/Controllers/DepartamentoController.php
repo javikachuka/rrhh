@@ -21,14 +21,14 @@ class DepartamentoController extends Controller
             ->select(
                 'departamentos.*',
                 'areas.nombre as nombreArea'
-            )->orderBy('departamentos.nombre', 'desc')->paginate(3);
+            )->orderBy('departamentos.nombre', 'desc')->paginate(10);
         } else {
             $departamentos = Departamento::join('areas', 'areas.id', '=', 'departamentos.area_id')
             ->select(
                 'departamentos.*',
                 'areas.nombre as nombreArea')
             ->where('departamentos.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('departamentos.nombre', 'desc')->paginate(3);
+            ->orderBy('departamentos.nombre', 'desc')->paginate(10);
         }
          
         return [

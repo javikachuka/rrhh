@@ -24,14 +24,14 @@ class AreaController extends Controller
                 'areas.*',
                 'empresas.nombre as nombreEmpresa'
             )->where('areas.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('areas.nombre', 'desc')->paginate(3);
+            ->orderBy('areas.nombre', 'desc')->paginate(10);
         } else {
             $areas = Area::join('empresas', 'areas.empresa_id', '=', 'empresas.id')
             ->select(
                 'areas.*',
                 'empresas.nombre as nombreEmpresa'
             )->where('areas.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('areas.nombre', 'desc')->paginate(3);
+            ->orderBy('areas.nombre', 'desc')->paginate(10);
         }
          
         return [

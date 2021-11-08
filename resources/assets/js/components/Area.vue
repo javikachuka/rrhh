@@ -1,31 +1,28 @@
 <template>
   <main class="main">
     <!-- Breadcrumb -->
-
+    
     <div class="container-fluid">
       <!-- Ejemplo de tabla Listado -->
       <div class="card mt-2 rounded">
         <div class="card-header rounded">
-           <div class="row justify-content-between"> 
-             <h3>
-               Empresas
-              </h3>
-              <button
-                type="button"
-                @click="abrirModal('empresa', 'registrar')"
-                class="btn btn-secondary btn-sm"
-              >
-                <i class="icon-plus"></i>&nbsp;Nuevo
-              </button>
-           </div>
+          <div class="row justify-content-between rounded">
+            <h3>Areas</h3>
+          <button 
+            type="button"
+            @click="abrirModal('area', 'registrar')"
+            class="btn btn-secondary btn-sm float-right"
+          >
+          
+            <i class="icon-plus"></i>&nbsp;Nuevo
+          </button>
+          </div>
         </div>
         <div class="card-body rounded">
+        <!--
           <div class="form-group row">
             <div class="col-md-6">
-              <!-- <div class="input-group">
-                <select class="form-control col-md-3" v-model="criterio">
-                  <option value="nombre">Nombre</option>
-                </select>
+              <div class="input-group">
                 <input
                   type="text"
                   v-model="buscar"
@@ -40,45 +37,57 @@
                 >
                   <i class="fa fa-search"></i> Buscar
                 </button>
-              </div> -->
+              </div>
             </div>
           </div>
+          -->
           <table class="table table-bordered table-striped table-sm rounded">
             <thead>
               <tr>
                 <th>Nombre</th>
-                <th>Razon Social</th>
-                <th>CUIT</th>
-                <th>Dirección</th>
-                <th>Inicio Actividad</th>
-                <th>Estado</th>
+                <th>Empresa</th>
+                <th>Condición</th>
                 <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="empresa in arrayempresas" :key="empresa.id">
-                <td v-text="empresa.nombre"></td>
-                <td v-text="empresa.razonSocial"></td>
-                <td v-text="empresa.cuit"></td>
-                <td v-text="empresa.direccion"></td>
-                <td v-text="empresa.inicioActividad"></td>
+              <tr v-for="area in arrayareas" :key="area.id">
+                <td v-text="area.nombre"></td>
+                <td v-text="area.nombreEmpresa"></td>
                 <td>
-                  <div v-if="empresa.condicion">
+                  <div v-if="area.condicion">
                     <span class="badge badge-success">Activo</span>
                   </div>
                   <div v-else>
-                    <span class="badge badge-danger">Desactivado</span>
+                    <span class="badge badge-danger">Inactivo</span>
                   </div>
                 </td>
                 <td>
                   <button
                     type="button"
-                    @click="abrirModal('empresa', 'actualizar', empresa)"
-                    class="btn btn-dark btn-sm"
+                    @click="abrirModal('area', 'actualizar', area)"
+                    class="btn btn-warning btn-sm"
                   >
                     <i class="icon-pencil"></i>
                   </button>
                   &nbsp;
+                  <template v-if="area.condicion">
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-sm"
+                      @click="desactivarArea(area.id)">
+                      <i class="icon-trash"></i>
+                    </button>
+                  </template>
+                  <template v-else>
+                    <button
+                      type="button"
+                      class="btn btn-info btn-sm"
+                      @click="activarArea(area.id)"
+                    >
+                      <i class="icon-check"></i>
+                    </button>
+                  </template>
                 </td>
               </tr>
             </tbody>
@@ -129,7 +138,7 @@
     </div>
     <!--Inicio del modal agregar/actualizar-->
     <div
-      class="modal fade"
+      class="modal fade rounded"
       tabindex="-1"
       :class="{ mostrar: modal }"
       role="dialog"
@@ -137,9 +146,9 @@
       style="display: none"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
+      <div class="modal-dialog modal-primary modal-lg" role="document">
+        <div class="modal-content rounded">
+          <div class="modal-header rounded">
             <h4 class="modal-title" v-text="tituloModal"></h4>
             <button
               type="button"
@@ -158,8 +167,9 @@
               enctype="multipart/form-data"
               class="form-horizontal"
             >
-              <div class="form-group row">
-                <label class="col-md-3 form-control-label rounded" for="text-input"
+              
+              <div class="form-group row rounded">
+                <label class="col-md-3 form-control-label" for="text-input"
                   >Nombre (*)</label
                 >
                 <div class="col-md-9">
@@ -167,68 +177,32 @@
                     type="text"
                     v-model="nombre"
                     class="form-control rounded"
-                    placeholder="Nombre de la empresa"
+                    placeholder="Nombre"
                   />
                 </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row rounded">
                 <label class="col-md-3 form-control-label" for="text-input"
-                  >Razon Social (*)
-                </label>
+                  >Descripción </label
+                >
                 <div class="col-md-9">
                   <input
                     type="text"
-                    v-model="razonSocial"
+                    v-model="descripcion"
                     class="form-control rounded"
-                    placeholder="Razon Social de la empresa"
-                  />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="text-input"
-                  >CUIT (*)
-                </label>
-                <div class="col-md-9">
-                  <input
-                    type="text"
-                    v-model="cuit"
-                    class="form-control rounded"
-                    placeholder="CUIT"
-                  />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="text-input"
-                  >Direccion (*)
-                </label>
-                <div class="col-md-9">
-                  <input
-                    type="text"
-                    v-model="direccion"
-                    class="form-control rounded"
-                    placeholder="Direccion"
-                  />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-3">Inicio de Actividad (*)</label>
-                <div class="col-md-9">
-                  <input
-                    type="date"
-                    class="form-control rounded"
-                    v-model="inicioActividad"
+                    placeholder="Descripcion"
                   />
                 </div>
               </div>
 
               <div v-show="errorComponente" class="form-group row div-error">
-                <ul class="text-center text-error">
-                  <li
+                <div class="text-center text-error">
+                  <div
                     v-for="error in errorMostrarMsjForm"
                     :key="error"
                     v-text="error"
-                  ></li>
-                </ul>
+                  ></div>
+                </div>
               </div>
             </form>
           </div>
@@ -244,7 +218,7 @@
               type="button"
               v-if="tipoAccion == 1"
               class="btn btn-primary"
-              @click="registrarEmpresa()"
+              @click="registrarArea()"
             >
               Guardar
             </button>
@@ -252,7 +226,7 @@
               type="button"
               v-if="tipoAccion == 2"
               class="btn btn-primary"
-              @click="actualizarEmpresa()"
+              @click="actualizarArea()"
             >
               Actualizar
             </button>
@@ -272,14 +246,13 @@ export default {
   data() {
     return {
       arrayEmpresas: [],
-      arrayempresas: [],
+      arrayareas: [],
 
       id: 0,
       nombre: "",
-      razonSocial: "",
-      cuit: "",
-      direccion: "",
-      inicioActividad: "",
+      descripcion: "",
+      empresa_id:0,
+      
 
       modal: 0,
       tituloModal: "",
@@ -328,18 +301,23 @@ export default {
     },
   },
   methods: {
-    listarTabla(page, buscar, criterio) {
-      this.listarEmpresa(page, buscar, criterio);
+    listarTabla(page, buscar, criterio = 'nombre') {
+      this.listarArea(page, buscar, criterio);
     },
-    listarEmpresa(page, buscar, criterio) {
+    listarArea(page, buscar, criterio) {
       let me = this;
       var url =
-        "/empresa?page=" + page + "&buscar=" + buscar + "&criterio=" + criterio;
+        "/area?page=" +
+        page +
+        "&buscar=" +
+        buscar +
+        "&criterio=" +
+        criterio;
       axios
         .get(url)
         .then(function (response) {
           var respuesta = response.data;
-          me.arrayempresas = respuesta.empresas.data;
+          me.arrayareas = respuesta.areas.data;
           me.pagination = respuesta.pagination;
         })
         .catch(function (error) {
@@ -353,18 +331,17 @@ export default {
       //Envia la petición para visualizar la data de esa página
       me.listarTabla(page, buscar, criterio);
     },
-    registrarEmpresa() {
+    registrarArea() {
       let me = this;
       if (this.validarForm()) {
         return;
       }
       axios
-        .post("/empresa/registrar", {
-          nombre: this.nombre,
-          razonSocial: this.razonSocial,
-          cuit: this.cuit,
-          direccion: this.direccion,
-          inicioActividad: this.inicioActividad,
+        .post("/area/registrar", {
+          "nombre": this.nombre,
+          "descripcion": this.descripcion,
+          //"empresa_id": this.empresa_id,
+
         })
         .then(function (response) {
           me.cerrarModal();
@@ -378,7 +355,7 @@ export default {
           toastr.error("Ha ocurrido un error", "Error", { timeOut: 5000 });
         });
     },
-    actualizarEmpresa() {
+    actualizarArea() {
       console.log("prueba");
       if (this.validarForm()) {
         return;
@@ -386,13 +363,11 @@ export default {
 
       let me = this;
       axios
-        .put("/empresa/actualizar", {
-          id: this.id,
-          nombre: this.nombre,
-          razonSocial: this.razonSocial,
-          cuit: this.cuit,
-          direccion: this.direccion,
-          inicioActividad: this.inicioActividad,
+        .put("/area/actualizar", {
+          "id": this.id,
+          "nombre": this.nombre,
+          "descripcion": this.descripcion,
+          //"empresa_id": this.empresa_id,
         })
         .then(function (response) {
           me.cerrarModal();
@@ -406,7 +381,7 @@ export default {
           toastr.error("Ha ocurrido un error", "Error", { timeOut: 5000 });
         });
     },
-    desactivarEmpresa(id) {
+    desactivarArea(id) {
       swal({
         title: "Esta seguro de desactivarlo ?",
         type: "warning",
@@ -424,12 +399,16 @@ export default {
           let me = this;
 
           axios
-            .put("/empresa/desactivar", {
+            .put("/area/desactivar", {
               id: id,
             })
             .then(function (response) {
               me.listarTabla(1, "", "nombre");
-              swal("Desactivado!", "Se ha desactivado con éxito.", "success");
+              swal(
+                "Desactivado!",
+                "Se ha desactivado con éxito.",
+                "success"
+              );
             })
             .catch(function (error) {
               console.log(error);
@@ -441,7 +420,7 @@ export default {
         }
       });
     },
-    activarEmpresa(id) {
+    activarArea(id) {
       swal({
         title: "Esta seguro de activarlo?",
         type: "warning",
@@ -459,12 +438,16 @@ export default {
           let me = this;
 
           axios
-            .put("/empresa/activar", {
+            .put("/area/activar", {
               id: id,
             })
             .then(function (response) {
               me.listarTabla(1, "", "nombre");
-              swal("Activado!", "Se ha activado con éxito.", "success");
+              swal(
+                "Activado!",
+                "Se ha activado con éxito.",
+                "success"
+              );
             })
             .catch(function (error) {
               console.log(error);
@@ -482,55 +465,58 @@ export default {
       this.errorMostrarMsjForm = [];
       if (!this.nombre)
         this.errorMostrarMsjForm.push("Debe ingresar el nombre");
-      if (!this.razonSocial)
-        this.errorMostrarMsjForm.push("Debe ingresar una razon social");
-      if (!this.cuit) this.errorMostrarMsjForm.push("Debe ingresar un CUIT");
-      if (!this.direccion)
-        this.errorMostrarMsjForm.push("Debe ingresar una direccion");
-      if (!this.inicioActividad)
-        this.errorMostrarMsjForm.push("Debe seleccionar una fecha");
       if (this.errorMostrarMsjForm.length) this.errorComponente = 1;
       return this.errorComponente;
     },
     cerrarModal() {
       this.modal = 0;
       this.tituloModal = "";
-
+   
       this.nombre = "";
-      this.descripcion = "";
+      this.descripcion = '';
       this.empresa_id = 0;
-    },
+
+    }, selectEmpresas(){
+                let me=this;
+                //loading(true)
+                var url= '/empresa/selectEmpresa';
+                axios.get(url).then(function (response) {
+                    let respuesta = response.data;
+                    //q: search
+                    me.arrayEmpresas=respuesta.empresas;
+                    //loading(false)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+     },
 
     abrirModal(modelo, accion, data = []) {
       switch (modelo) {
-        case "empresa": {
+        case "area": {
           switch (accion) {
             case "registrar": {
               this.modal = 1;
-              this.tituloModal = "Nueva empresa";
-
-              this.id = 0;
+              this.tituloModal = "Nueva area";
+              
+              this.id = 0;  
               this.nombre = "";
-              this.razonSocial = "";
-              this.cuit = "";
-              this.inicioActividad = "";
-              this.direccion = "";
+              this.descripcion = '';
+              this.empresa_id = 0;
 
               this.tipoAccion = 1;
               break;
             }
             case "actualizar": {
               this.modal = 1;
-              this.tituloModal = "Actualizar empresa";
+              this.tituloModal = "Actualizar area";
               this.tipoAccion = 2;
 
-              this.id = data["id"];
+              this.id = data["id"];  
               this.nombre = data["nombre"];
-              this.razonSocial = data["razonSocial"];
-              this.cuit = data["cuit"];
-              this.inicioActividad = data["inicioActividad"];
-              this.direccion = data["direccion"];
-
+              this.descripcion = data["descripcion"];
+              this.empresa_id = data["empresa_id"];
+              
               break;
             }
           }
@@ -540,6 +526,7 @@ export default {
   },
   mounted() {
     this.listarTabla(1, this.buscar, this.criterio);
+     this.selectEmpresas()
   },
 };
 </script>

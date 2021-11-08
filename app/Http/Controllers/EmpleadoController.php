@@ -38,7 +38,7 @@ class EmpleadoController extends Controller
                 $empleados= $empleados->where('empleados.'.$criterio, 'like', '%'. $buscar . '%');
             }
            
-            $empleados=$empleados->select('empleados.*')->orderBy('empleados.nombre', 'desc')->paginate(3);
+            $empleados=$empleados->select('empleados.*')->orderBy('empleados.nombre', 'desc')->paginate(10);
         ///return $empleados;
         } else {
             //return 'else';
@@ -55,7 +55,7 @@ class EmpleadoController extends Controller
                 $empleados= $empleados->where('empleados.'.$criterio, 'like', '%'. $buscar . '%');
             }
             
-            $empleados=$empleados->select('empleados.*')->orderBy('empleados.nombre', 'desc')->paginate(3);
+            $empleados=$empleados->select('empleados.*')->orderBy('empleados.nombre', 'desc')->paginate(10);
         }
        
        

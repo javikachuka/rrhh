@@ -20,11 +20,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('empresa', require('./components/Empresa.vue'));
 Vue.component('inicio', require('./components/Inicio.vue'));
 // Vue.component('incidencia', require('./components/Incidencia.vue'));
-// Vue.component('puesto', require('./components/Puesto.vue'));
+Vue.component('puesto', require('./components/Puesto.vue'));
 // Vue.component('contrato', require('./components/Contrato.vue'));
 // Vue.component('evento', require('./components/Evento.vue'));
-// Vue.component('departamento', require('./components/Departamento.vue'));
-// Vue.component('areal', require('./components/Area.vue'));
+Vue.component('departamento', require('./components/Departamento.vue'));
+Vue.component('areal', require('./components/Area.vue'));
 // Vue.component('dianolaboral', require('./components/DiaNoLaboral.vue'));
 // Vue.component('inasistencia', require('./components/Inasistencia.vue'));
 // Vue.component('competencia1', require('./components/Competencia.vue'));

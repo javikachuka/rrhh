@@ -33,8 +33,11 @@
             </li>
 
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-notebook"></i> Empresa</a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-notebook"></i> Entidades</a>
                 <ul class="nav-dropdown-items">
+                    <li @click="menu='empresa'" class="nav-item">
+                        <a class="nav-link" href="#"><i ></i> Empresas</a>
+                    </li>
                     <li @click="menu='area'" class="nav-item">
                         <a class="nav-link" href="i#"><i ></i> Areas</a>
                     </li>
@@ -44,12 +47,11 @@
                     <li @click="menu='puesto'" class="nav-item">
                         <a class="nav-link" href="#"><i ></i> Puestos</a>
                     </li>
+                    <!--                    
                     <li @click="menu='evento'" class="nav-item">
                         <a class="nav-link" href="#"><i ></i> Evento</a>
                     </li>
-                    <li @click="menu='empresa'" class="nav-item">
-                        <a class="nav-link" href="#"><i ></i> Empresa</a>
-                    </li>
+                    -->
                 </ul>
             </li>
 
