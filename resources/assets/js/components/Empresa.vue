@@ -67,7 +67,7 @@
                     <span class="badge badge-success">Activo</span>
                   </div>
                   <div v-else>
-                    <span class="badge badge-danger">Desactivado</span>
+                    <span class="badge badge-danger">Inactivo</span>
                   </div>
                 </td>
                 <td>
