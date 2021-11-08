@@ -86,7 +86,7 @@
                                                 departamento
                                             )
                                         "
-                                        class="btn btn-warning btn-sm"
+                                        class="btn btn-dark btn-sm"
                                     >
                                         <i class="icon-pencil"></i>
                                     </button>
@@ -94,7 +94,7 @@
                                     <template v-if="departamento.condicion">
                                         <button
                                             type="button"
-                                            class="btn btn-danger btn-sm"
+                                            class="btn btn-dark btn-sm"
                                             @click="
                                                 desactivarDepartamento(
                                                     departamento.id
@@ -107,7 +107,7 @@
                                     <template v-else>
                                         <button
                                             type="button"
-                                            class="btn btn-info btn-sm"
+                                            class="btn btn-dark btn-sm"
                                             @click="
                                                 activarDepartamento(
                                                     departamento.id

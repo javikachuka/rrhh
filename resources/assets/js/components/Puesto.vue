@@ -85,7 +85,7 @@
                                                 puesto
                                             )
                                         "
-                                        class="btn btn-warning btn-sm"
+                                        class="btn btn-dark btn-sm"
                                     >
                                         <i class="icon-pencil"></i>
                                     </button>
@@ -93,7 +93,7 @@
                                     <template v-if="puesto.condicion">
                                         <button
                                             type="button"
-                                            class="btn btn-danger btn-sm"
+                                            class="btn btn-dark btn-sm"
                                             @click="desactivarContrato(puesto.id)"
                                         >
                                             <i class="icon-trash"></i>
@@ -102,7 +102,7 @@
                                     <template v-else>
                                         <button
                                             type="button"
-                                            class="btn btn-info btn-sm"
+                                            class="btn btn-dark btn-sm"
                                             @click="activarContrato(puesto.id)"
                                         >
                                             <i class="icon-check"></i>

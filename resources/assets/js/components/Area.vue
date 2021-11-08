@@ -66,7 +66,7 @@
                   <button
                     type="button"
                     @click="abrirModal('area', 'actualizar', area)"
-                    class="btn btn-warning btn-sm"
+                    class="btn btn-dark btn-sm"
                   >
                     <i class="icon-pencil"></i>
                   </button>
@@ -74,7 +74,7 @@
                   <template v-if="area.condicion">
                     <button
                       type="button"
-                      class="btn btn-danger btn-sm"
+                      class="btn btn-dark btn-sm"
                       @click="desactivarArea(area.id)">
                       <i class="icon-trash"></i>
                     </button>
@@ -82,7 +82,7 @@
                   <template v-else>
                     <button
                       type="button"
-                      class="btn btn-info btn-sm"
+                      class="btn btn-dark btn-sm"
                       @click="activarArea(area.id)"
                     >
                       <i class="icon-check"></i>

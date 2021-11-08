@@ -39,10 +39,10 @@
                         <a class="nav-link" href="#"><i ></i> Empresas</a>
                     </li>
                     <li @click="menu='area'" class="nav-item">
-                        <a class="nav-link" href="i#"><i ></i> Areas</a>
+                        <a class="nav-link" href="#"><i ></i> Areas</a>
                     </li>
                     <li @click="menu='departamento'" class="nav-item">
-                        <a class="nav-link" href="i#"><i ></i> Departamentos</a>
+                        <a class="nav-link" href="#"><i ></i> Departamentos</a>
                     </li>
                     <li @click="menu='puesto'" class="nav-item">
                         <a class="nav-link" href="#"><i ></i> Puestos</a>
