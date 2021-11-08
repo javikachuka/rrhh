@@ -146,7 +146,7 @@
       style="display: none"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-primary modal-lg" role="document">
+      <div class="modal-dialog  modal-lg" role="document">
         <div class="modal-content rounded">
           <div class="modal-header rounded">
             <h4 class="modal-title" v-text="tituloModal"></h4>
