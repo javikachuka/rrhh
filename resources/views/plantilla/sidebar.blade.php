@@ -44,9 +44,9 @@
                     <li @click="menu='puesto'" class="nav-item">
                         <a class="nav-link" href="#"><i ></i> Puestos</a>
                     </li>
-                    <li @click="menu='evento'" class="nav-item">
+                    <!-- <li @click="menu='evento'" class="nav-item">
                         <a class="nav-link" href="#"><i ></i> Evento</a>
-                    </li>
+                    </li> -->
                     <li @click="menu='empresa'" class="nav-item">
                         <a class="nav-link" href="#"><i ></i> Empresa</a>
                     </li>

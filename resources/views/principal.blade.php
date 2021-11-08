@@ -57,8 +57,15 @@
                 
             </ul>
             <ul class="nav navbar-nav ml-auto">
+
+                <li>
+                    <strong>Usuario:</strong> {{Auth::user()->usuario}}
+                </li>
+                <li class="ml-2" >
+                    <strong>Empresa:</strong> {{Auth::user()->empresa->nombre}}
+                </li>
                 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown ml-2">
                     <a class="dropdown-item" href="{{ route('logout') }}" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
