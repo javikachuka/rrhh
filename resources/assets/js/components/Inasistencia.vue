@@ -4,8 +4,8 @@
 
     <div class="container-fluid">
       <!-- Ejemplo de tabla Listado -->
-      <div class="card">
-        <div class="card-header">
+      <div class="card mt-2 rounded">
+        <div class="card-header rounded">
           <div class="row justify-content-between rounded">
             <h3>Solicitudes de Inasistencias</h3>
             <button
@@ -17,7 +17,7 @@
             </button>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body rounded">
           <!-- <div class="form-group row">
             <div class="col-md-6">
               <div class="input-group">
@@ -57,7 +57,7 @@
               </button>
             </div>
           </div> -->
-          <table class="table table-bordered table-striped table-sm">
+          <table class="table table-bordered table-striped table-sm rounded">
             <thead>
               <tr>
                 <th>Desde</th>
@@ -101,7 +101,7 @@
                     <span class="badge badge-success">Activo</span>
                   </div>
                   <div v-else>
-                    <span class="badge badge-danger">Desactivado</span>
+                    <span class="badge badge-danger">Inactivo</span>
                   </div>
                 </td> -->
                 <td>
@@ -161,14 +161,14 @@
                       <i class="icon-eye"></i>
                     </button>
                   </template> -->
-                  &nbsp;
+                  &nbsp;&nbsp;
                   <template>
                     <button
                       v-if="user.rol.nombre == 'Administrador'  && solicitudInasistencia.aprobado==null || solicitudInasistencia.aprobado==true"
                       type="button"
                       title="Desaprobar"
                       @click="aprobarSolicitud(solicitudInasistencia, 0)"
-                      class="btn btn-outline-info btn-sm"
+                      class="btn btn-danger btn-sm"
                     >
                       <i class="icon-close"></i>
                     </button>
@@ -179,7 +179,7 @@
                       type="button"
                       title="Aprobar"
                       @click="aprobarSolicitud(solicitudInasistencia, 1)"
-                      class="btn btn-outline-info btn-sm"
+                      class="btn btn-success btn-sm"
                     >
                       <i class="icon-check"></i>
                     </button>
@@ -234,7 +234,7 @@
     </div>
     <!--Inicio del modal agregar/actualizar-->
     <div
-      class="modal fade"
+      class="modal fade rounded"
       tabindex="-1"
       :class="{ mostrar: modal }"
       role="dialog"
@@ -242,7 +242,7 @@
       style="display: none"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-dialog modal-lg rounded" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -284,7 +284,7 @@
                   >Incidencias (*)</label
                 >
                 <div class="col-3"></div>
-                <select class="form-control" v-model="incidencia_id">
+                <select class="form-control rounded" v-model="incidencia_id">
                   <option value="0" disabled>Seleccione</option>
                   <option
                     v-for="incidencia in arrayIncidencias"
@@ -306,7 +306,7 @@
                 <div class="form-group">
                   <label>Desde (*)</label>
                   <div class="col-3"></div>
-                  <input type="date" class="form-control" v-model="desde" />
+                  <input type="date" class="form-control rounded" v-model="desde" />
                   <div class="col-3"></div>
                 </div>
               </div>
@@ -314,7 +314,7 @@
                 <div class="form-group">
                   <label>Hasta (*)</label>
                   <div class="col-3"></div>
-                  <input type="date" class="form-control" v-model="hasta" />
+                  <input type="date" class="form-control rounded" v-model="hasta" />
                   <div class="col-3"></div>
                 </div>
               </div>
@@ -326,8 +326,8 @@
                 <input
                   type="text"
                   v-model="motivo"
-                  class="form-control"
-                  placeholder="Motivo de la solicitud de la inasistencia"
+                  class="form-control rounded"
+                  placeholder="Ingrese un motivo"
                 />
                 <div class="col-3"></div>
               </div>

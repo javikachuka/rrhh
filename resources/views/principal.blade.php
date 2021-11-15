@@ -13,13 +13,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user" content="{{ Auth::user()->load('rol') }}">
     <script src="https://unpkg.com/vue-select@latest"></script>
-    {{-- <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css"> --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
+    {{--
+    <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css"> --}}
+    {{--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> --}}
+    {{--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
     <link rel="stylesheet" href="{{ asset('import/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('import/vue-select.css') }}">
     <link rel="stylesheet" href="{{ asset('import/vue-multiselect.min.css') }}">
-    
+
     {{-- <script src="{{ asset('import/vue-select@latest') }}"></script> --}}
     <script src="{{ asset('import/toastr.min.js') }}"></script>
 
@@ -40,11 +43,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button> -->
             <ul class="nav navbar-nav d-md-down-none">
-                <li  @click="menu=0" class="nav-item px-3">
+                <li @click="menu=0" class="nav-item px-3">
                     <h6>Sistema de Nóminas</h6>
                 </li>
                 <li> </li>
-                <li  @click="menu=0" class="nav-item pl-4">
+                <li @click="menu=0" class="nav-item pl-4">
                     <a class="nav-link" href="#">Home</a>
                 </li>
                 <!-- <li  @click="menu=1" class="nav-item px-3">
@@ -54,25 +57,27 @@
                     <a class="nav-link" href="#">Empresas</a>
                 </li> -->
 
-                
-            </ul>
-            <ul class="nav navbar-nav ml-auto">
 
-                <li>
-                    <strong>Usuario:</strong> {{Auth::user()->usuario}}
-                </li>
-                <li class="ml-2" >
-                    <strong>Empresa:</strong> {{Auth::user()->empresa->nombre}}
-                </li>
-                
-                <li class="nav-item dropdown ml-2">
-                    <a class="dropdown-item" href="{{ route('logout') }}" 
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i></a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                    
-                </li>
+            </ul>
+            <ul class="nav navbar-nav ml-5">
+                <ul class="navbar-nav mr-5">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-expanded="false">
+                            {{Auth::user()->empresa->nombre}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#"><strong>Fecha:</strong> {{date('d/m/Y')}}</a>
+                            <a class="dropdown-item" href="#"><strong>Usuario:</strong> {{Auth::user()->usuario}}</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                                    class="fa fa-sign-out"></i></a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
+                    </li>
+                </ul>
             </ul>
         </header>
 
@@ -85,7 +90,7 @@
         </div>
     </div>
 
-<!-- 
+    <!-- 
     <footer class="app-footer">
         <span>...</span>
         <span class="ml-auto">...</a></span>

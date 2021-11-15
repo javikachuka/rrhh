@@ -28,7 +28,7 @@ class TipoContratoController extends Controller
                 $tipoContratos->where('tipo_contratos.'.$criterio, 'like', '%'. $buscar . '%');
             }
             
-            $tipoContrato= $tipoContratos->orderBy('nombre', 'desc')->paginate(3);
+            $tipoContrato= $tipoContratos->orderBy('nombre', 'desc')->paginate(10);
          
         return [
             'pagination' => [

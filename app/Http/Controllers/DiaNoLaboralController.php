@@ -25,14 +25,14 @@ class DiaNoLaboralController extends Controller
                 'dias_no_laborales.*',
                 'empresas.nombre as nombreEmpresa'
             )
-            ->paginate(3);
+            ->paginate(10);
         } else {
             $diaNoLaborales = DiaNoLaboral::join('empresas', 'dias_no_laborales.empresa_id', '=', 'empresas.id')
             ->select(
                 'dias_no_laborales.*',
                 'empresas.nombre as nombreEmpresa'
             )->where('dias_no_laborales.'.$criterio, 'like', '%'. $buscar . '%')
-            ->paginate(3);
+            ->paginate(10);
         }
          
         return [
@@ -65,7 +65,7 @@ class DiaNoLaboralController extends Controller
             )
             ->where('dia', '>', Carbon::now())
             ->orderBy('dia', 'asc')
-            ->paginate(3);
+            ->paginate(10);
         } else {
             $diaNoLaborales = DiaNoLaboral::join('empresas', 'dias_no_laborales.empresa_id', '=', 'empresas.id')
             ->select(
@@ -75,7 +75,7 @@ class DiaNoLaboralController extends Controller
             )->where('dias_no_laborales.'.$criterio, 'like', '%'. $buscar . '%')
                 ->where('dia', '>', Carbon::now())
                 ->orderBy('dia', 'asc')
-            ->paginate(3);
+            ->paginate(10);
         }
          
         return [

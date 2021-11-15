@@ -69,7 +69,7 @@ class SolicitudInasistenciaController extends Controller
         } elseif ($buscar!='') {
             $solicitudInasistencias= $solicitudInasistencias->where('solicitudes_inasistencias.'.$criterio, 'like', '%'. $buscar . '%');
         }
-        $solicitudInasistencias=$solicitudInasistencias->paginate(3);
+        $solicitudInasistencias=$solicitudInasistencias->paginate(10);
          
         return [
             'pagination' => [
@@ -122,7 +122,7 @@ class SolicitudInasistenciaController extends Controller
         } elseif ($buscar!='') {
             $solicitudInasistencias= $solicitudInasistencias->where('solicitudes_inasistencias.'.$criterio, 'like', '%'. $buscar . '%');
         }
-        $solicitudInasistencias=$solicitudInasistencias->paginate(3);
+        $solicitudInasistencias=$solicitudInasistencias->paginate(10);
          
         
        

@@ -20,13 +20,13 @@ class EventoController extends Controller
         if ($buscar=='') {
             $eventos = Evento::join('departamentos','eventos.departamento_id','=','departamentos.id')
             ->select( 'eventos.*', 'departamentos.nombre as nombreDepartamento')
-            ->orderBy('titulo', 'desc')->paginate(3);
+            ->orderBy('titulo', 'desc')->paginate(10);
             
         } else {
             $eventos = Evento::join('departamentos','eventos.departamento_id','=','departamentos.id')
             ->select( 'eventos.*', 'departamentos.nombre as nombreDepartamento')
             ->where('eventos.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('titulo', 'desc')->paginate(3);
+            ->orderBy('titulo', 'desc')->paginate(10);
         }
        
         return [
@@ -46,7 +46,7 @@ class EventoController extends Controller
     {
         
         $eventos = Evento::select( 'id', 'fechaFin as end', 'titulo as title', 'fecha as start', 'descripcion')
-        ->orderBy('id', 'desc')->paginate(3);
+        ->orderBy('id', 'desc')->paginate(10);
         return [
            'pagination' => [
                 'total'        => $eventos->total(),
@@ -71,14 +71,14 @@ class EventoController extends Controller
             $eventos = Evento::join('departamentos','eventos.departamento_id','=','departamentos.id')
             ->select( 'eventos.*',DB::raw("DATE_FORMAT(eventos.fecha, '%d/%m/%Y') as fecha2"), 'departamentos.nombre as nombreDepartamento')
             ->where('eventos.fecha','>',Carbon::now())
-            ->orderBy('fecha', 'asc')->paginate(3);
+            ->orderBy('fecha', 'asc')->paginate(10);
             
         } else {
             $eventos = Evento::join('departamentos','eventos.departamento_id','=','departamentos.id')
             ->select( 'eventos.*',DB::raw("DATE_FORMAT(eventos.fecha, '%d/%m/%Y') as fecha2"), 'departamentos.nombre as nombreDepartamento')
             ->where('eventos.'.$criterio, 'like', '%'. $buscar . '%')
             ->where('eventos.fecha','>',Carbon::now())
-            ->orderBy('fecha', 'asc')->paginate(3);
+            ->orderBy('fecha', 'asc')->paginate(10);
         }
          
         return [

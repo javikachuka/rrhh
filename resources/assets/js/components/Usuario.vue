@@ -4,8 +4,8 @@
 
     <div class="container-fluid">
       <!-- Ejemplo de tabla Listado -->
-      <div class="card">
-        <div class="card-header">
+      <div class="card mt-2 rounded">
+        <div class="card-header rounded">
           <div class="row justify-content-between rounded">
             <h3>Usuarios</h3>
             <button
@@ -17,7 +17,7 @@
             </button>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body rounded">
           <!-- <div class="form-group row">
             <div class="col-md-6">
               <div class="input-group">
@@ -42,7 +42,7 @@
               </div>
             </div>
           </div> -->
-          <table class="table table-bordered table-striped table-sm">
+          <table class="table table-bordered table-striped table-sm rounded">
             <thead>
               <tr>
                 <th>Nombre</th>
@@ -142,7 +142,7 @@
     </div>
     <!--Inicio del modal agregar/actualizar-->
     <div
-      class="modal fade"
+      class="modal fade rounded"
       tabindex="-1"
       :class="{ mostrar: modal }"
       role="dialog"
@@ -150,7 +150,7 @@
       style="display: none"
       aria-hidden="true"
     >
-      <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-dialog  modal-lg rounded" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -179,8 +179,8 @@
                   <input
                     type="text"
                     v-model="usuario"
-                    class="form-control"
-                    placeholder="Nombre del usuario"
+                    class="form-control rounded"
+                    placeholder="Nombre"
                   />
                 </div>
               </div>
@@ -192,8 +192,8 @@
                   <input
                     type="password"
                     v-model="password"
-                    class="form-control"
-                    placeholder="Password de acceso"
+                    class="form-control rounded"
+                    placeholder="Contraseña"
                     maxlength="60"
                   />
                 </div>
@@ -206,7 +206,7 @@
                   <input
                     type="email"
                     v-model="email"
-                    class="form-control"
+                    class="form-control rounded"
                     placeholder="Email"
                     maxlength="50"
                   />
@@ -217,7 +217,7 @@
                   >Empleado (*)</label
                 >
                 <div class="col-md-9">
-                  <select class="form-control" v-model="empleado_id">
+                  <select class="form-control rounded" v-model="empleado_id">
                     <option value="0" disabled>Seleccione el Empleado</option>
                     <option
                       v-for="empleado in arrayEmpleado"
@@ -233,7 +233,7 @@
                   >Rol (*)</label
                 >
                 <div class="col-md-9">
-                  <select class="form-control" v-model="rol_id">
+                  <select class="form-control rounded" v-model="rol_id">
                     <option value="0" disabled>Seleccione el Rol</option>
                     <option
                       v-for="rol in arrayRol"

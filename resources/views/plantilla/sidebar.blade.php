@@ -9,7 +9,7 @@
             </li> -->
             @if (Auth::user()->rol->nombre == 'Administrador')
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user"></i> Empleados</a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user"></i> Personas</a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=1" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-people-carry"></i> Empleados</a>
@@ -24,7 +24,7 @@
                         <a class="nav-link" href="#"><i></i> Incidencias</a>
                     </li> -->
                     <li @click="menu='inasistencia'" class="nav-item">
-                        <a class="nav-link" href="i#"><i ></i> Solicitudes</a>
+                        <a class="nav-link" href="#"><i ></i> Solicitudes</a>
                     </li>
                     <!-- <li @click="menu='competencia'" class="nav-item">
                         <a class="nav-link" href="i#"><i ></i> Competencias</a>
@@ -48,7 +48,7 @@
                         <a class="nav-link" href="#"><i ></i> Puestos</a>
                     </li>
                     <li @click="menu='tipoContrato'" class="nav-item">
-                        <a class="nav-link" href="i#"><i ></i> Tipo de Contratos</a>
+                        <a class="nav-link" href="#"><i ></i> Tipo de Contratos</a>
                     </li>
                     <li @click="menu=3" class="nav-item">
                         <a class="nav-link" href="#"><i></i> Incidencias</a>
@@ -139,3 +139,6 @@
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

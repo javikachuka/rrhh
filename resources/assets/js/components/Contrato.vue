@@ -4,8 +4,8 @@
     
     <div class="container-fluid">
       <!-- Ejemplo de tabla Listado -->
-      <div class="card">
-        <div class="card-header">
+      <div class="card mt-2 rounded">
+        <div class="card-header rounded">
           <div class="row justify-content-between rounded">
             <h3>Contratos </h3>
             <button
@@ -17,7 +17,7 @@
             </button>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body rounded">
           <!-- <form action="/contrato/pdf" method="get">
             <div class="form-group row">
               <div class="col-6">
@@ -80,7 +80,7 @@
               </div>
             </div>
           </form> -->
-          <table class="table table-bordered table-striped table-sm">
+          <table class="table table-bordered table-striped table-sm rounded">
             <thead>
               <tr>
                 <th>Empleado (ID)</th>
@@ -214,7 +214,7 @@
       style="display: none"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-dialog modal-lg rounded" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -227,7 +227,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body rounded">
             <form
               id="modal-form"
               action=""
@@ -240,7 +240,7 @@
                   >Empleados (*)</label
                 >
                 <div class="col-md-9">
-                  <select class="form-control" v-model="idempleado">
+                  <select class="form-control rounded" v-model="idempleado">
                     <option value="0" disabled>Seleccione</option>
                     <option
                       v-for="empleado in arrayEmpleado"
@@ -256,7 +256,7 @@
                   >Tipos de Contratos (*)</label
                 >
                 <div class="col-md-9">
-                  <select class="form-control" v-model="idTipoContrato">
+                  <select class="form-control rounded" v-model="idTipoContrato">
                     <option value="0" disabled>Seleccione</option>
                     <option
                       v-for="tipoContrato in arrayTipoContrato"
@@ -282,7 +282,7 @@
                   <input
                     type="text"
                     v-model="nombre"
-                    class="form-control"
+                    class="form-control rounded"
                     placeholder="Nombre del contrato"
                   />
                 </div>
@@ -295,7 +295,7 @@
                   <input
                     type="text"
                     v-model="descripcion"
-                    class="form-control"
+                    class="form-control rounded"
                     placeholder="Descripcion del contrato"
                   />
                 </div>
@@ -306,7 +306,7 @@
                   >Puestos (*)</label
                 >
                 <div class="col-md-9">
-                  <select class="form-control" v-model="idpuesto">
+                  <select class="form-control rounded" v-model="idpuesto">
                     <option value="0" disabled>Seleccione</option>
                     <option
                       v-for="puesto in arrayPuesto"
@@ -325,7 +325,7 @@
                   <input
                     type="number"
                     v-model="cantidadHorasDiarias"
-                    class="form-control"
+                    class="form-control rounded"
                     placeholder="Cantidad de horas laborales"
                   />
                 </div>
@@ -339,7 +339,7 @@
                   <input
                     type="number"
                     v-model="salario"
-                    class="form-control"
+                    class="form-control rounded"
                     placeholder="Salario laboral"
                   />
                 </div>
@@ -350,7 +350,7 @@
                 <div class="col-md-9">
                   <input
                     type="date"
-                    class="form-control"
+                    class="form-control rounded"
                     v-model="inicioLaboral"
                   />
                 </div>
@@ -361,7 +361,7 @@
                 <div class="col-md-9">
                   <input
                     type="date"
-                    class="form-control"
+                    class="form-control rounded"
                     v-model="finLaboral"
                   />
                 </div>
@@ -373,7 +373,7 @@
                     class="btn btn-secondary"
                     @click="calculadorDias()"
                   >
-                    Calcular Dias
+                    Calcular Dias del contrato
                   </button>
                 </div>
                 <div class="col-md-9 text-center text-error">
@@ -397,6 +397,7 @@
                 </label>
                 <div class="col-md-9">
                   <input
+                    class="form-control rounded"
                     type="file"
                     accept="application/pdf"
                     @change="getImage"

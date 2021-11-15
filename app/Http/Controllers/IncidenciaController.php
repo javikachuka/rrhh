@@ -17,12 +17,12 @@ class IncidenciaController extends Controller
          
         if ($buscar==''){
             
-            $incidencias = Incidencia::orderBy('nombre', 'desc')->paginate(3);
+            $incidencias = Incidencia::orderBy('nombre', 'desc')->paginate(10);
         }
         else{
            
             $incidencias = Incidencia::where($criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('nombre', 'desc')->paginate(3);
+            ->orderBy('nombre', 'desc')->paginate(10);
         }
          
         return [

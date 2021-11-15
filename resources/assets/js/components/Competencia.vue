@@ -4,7 +4,7 @@
            
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Competencias
                         <button type="button" @click="abrirModal('competencia','registrar')" class="btn btn-secondary">
@@ -44,7 +44,7 @@
                                             <span class="badge badge-success">Activo</span>
                                         </div>
                                         <div v-else>
-                                            <span class="badge badge-danger">Desactivado</span>
+                                            <span class="badge badge-danger">Inactivo</span>
                                         </div>
                                     </td>
                                     <td>

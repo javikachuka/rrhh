@@ -2,10 +2,10 @@
             <main class="main">
             <!-- Breadcrumb -->
             
-            <div class="container-fluid">
+            <div class="container-fluid rounded">
                 <!-- Ejemplo de tabla Listado -->
-                <div class="card">
-                    <div class="card-header">
+                <div class="card rounded mt-2">
+                    <div class="card-header rounded">
                         <div class="row justify-content-between rounded">
                             <h3>Incidencias</h3>
                             <button type="button" @click="abrirModal('incidencia','registrar')" class="btn btn-secondary btn-sm">
@@ -13,7 +13,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body rounded">
                         <!-- <div class="form-group row">
                             <div class="col-md-6">
                                 <div class="input-group">
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                         </div> -->
-                        <table class="table table-bordered table-striped table-sm">
+                        <table class="table table-bordered table-striped table-sm rounded">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -51,7 +51,7 @@
                                             <span class="badge badge-success">Activo</span>
                                         </div>
                                         <div v-else>
-                                            <span class="badge badge-danger">Desactivado</span>
+                                            <span class="badge badge-danger">Inactivo</span>
                                         </div>
                                     </td>
                                     <td>

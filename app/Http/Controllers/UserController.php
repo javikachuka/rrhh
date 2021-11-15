@@ -16,10 +16,10 @@ class UserController extends Controller
         $criterio = $request->criterio;
          
         if ($buscar==''){
-            $users = User::orderBy('users.id', 'desc')->paginate(3);
+            $users = User::orderBy('users.id', 'desc')->paginate(10);
         }
         else{
-            $users = User::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
+            $users = User::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(10);
         }
         
  
@@ -44,10 +44,10 @@ class UserController extends Controller
         $criterio = $request->criterio;
          
         if ($buscar==''){
-            $roles = Rol::orderBy('roles.id', 'desc')->paginate(3);
+            $roles = Rol::orderBy('roles.id', 'desc')->paginate(10);
         }
         else{
-            $roles = Rol::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
+            $roles = Rol::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(10);
         }
         
  

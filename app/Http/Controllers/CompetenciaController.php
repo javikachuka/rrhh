@@ -17,12 +17,12 @@ class CompetenciaController extends Controller
          
         if ($buscar==''){
             
-            $competencias = Competencia::orderBy('nombre', 'desc')->paginate(3);
+            $competencias = Competencia::orderBy('nombre', 'desc')->paginate(10);
         }
         else{
            
             $competencias = Competencia::where($criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('nombre', 'desc')->paginate(3);
+            ->orderBy('nombre', 'desc')->paginate(10);
         }
          
         return [

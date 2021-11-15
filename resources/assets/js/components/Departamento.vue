@@ -4,7 +4,7 @@
 
         <div class="container-fluid">
             <!-- Ejemplo de tabla Listado -->
-            <div class="card rounded">
+            <div class="card rounded mt-2">
                 <div class="card-header rounded">
                     <div class="row justify-content-between rounded">
                         <h3>Departamentos</h3>
@@ -220,7 +220,7 @@
                                 >
                                 <div class="col-md-9">
                                     <select
-                                        class=" form-control"
+                                        class=" form-control rounded"
                                         v-model="area_id"
                                     >
                                         <option value="0" disabled
@@ -245,7 +245,7 @@
                                     <input
                                         type="text"
                                         v-model="nombre"
-                                        class="form-control"
+                                        class="form-control rounded"
                                         placeholder="Nombre"
                                     />
                                 </div>
@@ -260,7 +260,7 @@
                                     <input
                                         type="text"
                                         v-model="descripcion"
-                                        class="form-control"
+                                        class="form-control rounded"
                                         placeholder="Descripcion"
                                     />
                                 </div>

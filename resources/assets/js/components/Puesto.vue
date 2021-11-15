@@ -4,7 +4,7 @@
 
         <div class="container-fluid">
             <!-- Ejemplo de tabla Listado -->
-            <div class="card rounded">
+            <div class="card rounded mt-2">
                 <div class="card-header rounded">
                     <div class="row justify-content-between rounded">
                         <h3>Puestos</h3>
@@ -182,9 +182,9 @@
             style="display: none"
             aria-hidden="true"
         >
-            <div class="modal-dialog  modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
+            <div class="modal-dialog  modal-lg" role="document rounded">
+                <div class="modal-content rounded">
+                    <div class="modal-header rounded">
                         <h4 class="modal-title" v-text="tituloModal"></h4>
                         <button
                             type="button"
@@ -211,7 +211,7 @@
                                 >
                                 <div class="col-md-9">
                                     <select
-                                        class="form-control"
+                                        class="form-control rounded"
                                         v-model="departamento_id"
                                     >
                                         <option value="0" disabled
@@ -236,7 +236,7 @@
                                     <input
                                         type="text"
                                         v-model="nombre"
-                                        class="form-control"
+                                        class="form-control rounded"
                                         placeholder="Nombre"
                                     />
                                 </div>
@@ -251,7 +251,7 @@
                                     <input
                                         type="text"
                                         v-model="descripcion"
-                                        class="form-control"
+                                        class="form-control rounded"
                                         placeholder="Descripcion"
                                     />
                                 </div>
@@ -266,7 +266,7 @@
                                     <input
                                         type="text"
                                         v-model="sueldoBasico"
-                                        class="form-control"
+                                        class="form-control rounded"
                                         placeholder="Salario laboral"
                                     />
                                 </div>

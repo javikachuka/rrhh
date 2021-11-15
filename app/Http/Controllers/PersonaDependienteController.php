@@ -24,12 +24,12 @@ class PersonaDependienteController extends Controller
         if ($buscar=='') {
             $personaDependientes = PersonaDependiente::join('empleados','empleados.id','=','persona_dependientes.empleado_id')
             ->select('persona_dependientes.*','empleados.apellido as apellidoEmpleado','empleados.nombre as nombreEmpleado')
-            ->orderBy('apellido', 'desc')->paginate(3);
+            ->orderBy('apellido', 'desc')->paginate(10);
         } else {
             $personaDependientes = PersonaDependiente::join('empleados','empleados.id','=','persona_dependientes.empleado_id')
             ->select('persona_dependientes.*','empleados.apellido as apellidoEmpleado','empleados.nombre as nombreEmpleado')
             ->where($criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('apellido', 'desc')->paginate(3);
+            ->orderBy('apellido', 'desc')->paginate(10);
         }
         } else {
             $iduser = \Auth::user()->id;
@@ -38,13 +38,13 @@ class PersonaDependienteController extends Controller
                 $personaDependientes = PersonaDependiente::join('empleados','empleados.id','=','persona_dependientes.empleado_id')
                 ->select('persona_dependientes.*','empleados.apellido as apellidoEmpleado','empleados.nombre as nombreEmpleado')
                 ->where('empleados.id', $solicitante)
-                ->orderBy('apellido', 'desc')->paginate(3);
+                ->orderBy('apellido', 'desc')->paginate(10);
             } else {
                 $personaDependientes = PersonaDependiente::join('empleados','empleados.id','=','persona_dependientes.empleado_id')
                 ->select('persona_dependientes.*','empleados.apellido as apellidoEmpleado','empleados.nombre as nombreEmpleado')
                 ->where($criterio, 'like', '%'. $buscar . '%')
                 ->where('empleados.id', $solicitante)
-                ->orderBy('apellido', 'desc')->paginate(3);
+                ->orderBy('apellido', 'desc')->paginate(10);
             }
         }
         return [

@@ -55,7 +55,7 @@ class ContratoController extends Controller
             $contratos->where('contratos.'.$criterio, 'like', '%'. $buscar . '%');
         }
          
-        $contratos= $contratos->orderBy('contratos.nombre', 'desc')->paginate(3);
+        $contratos= $contratos->orderBy('contratos.nombre', 'desc')->paginate(10);
          
         return [
             'pagination' => [
@@ -205,15 +205,15 @@ class ContratoController extends Controller
         }
         // $contratos=$contratos->select('empleados.*',
         // DB::raw("DATE_FORMAT(contratos.finLaboral, '%d/%m/%Y') as finLaboral2"),
-        // DB::raw("DATE_FORMAT(contratos.inicioLaboral, '%d/%m/%Y') as inicioLaboral2"))->paginate(3);
-        // $contratos=$contratos->select('empleados.*')->groupBy('empleados.id')->paginate(3);
+        // DB::raw("DATE_FORMAT(contratos.inicioLaboral, '%d/%m/%Y') as inicioLaboral2"))->paginate(10);
+        // $contratos=$contratos->select('empleados.*')->groupBy('empleados.id')->paginate(10);
         $contratos=$contratos->select(
             'contratos.*',
             DB::raw("DATE_FORMAT(contratos.inicioLaboral, '%d/%m/%Y') as inicioLaboral2"),
             DB::raw("DATE_FORMAT(contratos.finLaboral, '%d/%m/%Y') as finLaboral2"),
             'empleados.nombre as nombreEmpleado',
             'empleados.apellido as apellidoEmpleado'
-        )->paginate(3);
+        )->paginate(10);
          
       
         return [

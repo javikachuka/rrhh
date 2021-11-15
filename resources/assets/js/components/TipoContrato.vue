@@ -4,8 +4,8 @@
    
     <div class="container-fluid">
       <!-- Ejemplo de tabla Listado -->
-      <div class="card">
-        <div class="card-header">
+      <div class="card mt-2 rounded">
+        <div class="card-header rounded">
           <div class="row justify-content-between rounded">
             <h3>Tipos de Contratos </h3>
             <button
@@ -17,7 +17,7 @@
             </button>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body rounded">
           <!-- <form action="/tipoContrato/pdf" method="get">
             <div class="form-group row">
               <div class="col-6">
@@ -59,7 +59,7 @@
               </div>
             </div>
           </form> -->
-          <table class="table table-bordered table-striped table-sm">
+          <table class="table table-bordered table-striped table-sm rounded">
             <thead>
               <tr>
                 <th>Nombre</th>
@@ -84,7 +84,7 @@
                     <span class="badge badge-success">Activo</span>
                   </div>
                   <div v-else>
-                    <span class="badge badge-danger">Desactivado</span>
+                    <span class="badge badge-danger">Inactivo</span>
                   </div>
                 </td>
                 <td>
@@ -203,8 +203,8 @@
                   <input
                     type="text"
                     v-model="nombre"
-                    class="form-control"
-                    placeholder="Nombre del Tipo de Contrato"
+                    class="form-control rounded"
+                    placeholder="Nombre"
                   />
                 </div>
               </div>
@@ -216,15 +216,10 @@
                   <input
                     type="number"
                     v-model="diasMinimo"
-                    class="form-control"
-                    placeholder="La cantidad de dias minimos de un contrato de este tipo"
+                    class="form-control rounded"
+                    placeholder="Ingrese cantidad de dias minimos del contrato"
                   />
                 </div>
-              </div>
-              <div class="form-group row">
-                <label >Contrato Indeterminado</label>
-                &nbsp;&nbsp;
-                <input type="checkbox"  v-model="indeterminado" />
               </div>
               <div class="form-group row">
                 <label class="col-md-3 form-control-label" for="text-input"
@@ -234,12 +229,15 @@
                   <input
                     type="number"
                     v-model="diasMaximo"
-                    class="form-control"
-                    placeholder="La cantidad de dias maximos de un contrato de este tipo"
+                    class="form-control rounded"
+                    placeholder="La cantidad de dias maximos del contrato"
                   />
                 </div>
               </div>
-
+              <div class="form-group row rounded">
+                <input class="align-center ml-3 rounded" type="checkbox"  v-model="indeterminado" />
+                <label >Es contrato Indeterminado</label>
+              </div>
               <div v-show="errorCompetencia" class="form-group row div-error">
                 <div class="text-center text-error">
                   <div
