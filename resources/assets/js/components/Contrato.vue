@@ -404,7 +404,6 @@
                     id="data"
                     name="data"
                   />
-                  <a :href="contrato" target="_blank">Ver</a>
                 </div>
               </div>
 
