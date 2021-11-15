@@ -16,17 +16,17 @@
                     </li>
                     <!-- <li @click="menu='personadependiente2'" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-people-carry"></i> P. Dependientes</a>
-                    </li>
+                    </li> -->
                     <li @click="menu=2" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-file-signature"></i> Contratos</a>
                     </li>
-                    <li @click="menu=3" class="nav-item">
+                    <!-- <li @click="menu=3" class="nav-item">
                         <a class="nav-link" href="#"><i></i> Incidencias</a>
-                    </li>
+                    </li> -->
                     <li @click="menu='inasistencia'" class="nav-item">
                         <a class="nav-link" href="i#"><i ></i> Solicitudes</a>
                     </li>
-                    <li @click="menu='competencia'" class="nav-item">
+                    <!-- <li @click="menu='competencia'" class="nav-item">
                         <a class="nav-link" href="i#"><i ></i> Competencias</a>
                     </li> -->
                 </ul>
@@ -46,6 +46,12 @@
                     </li>
                     <li @click="menu='puesto'" class="nav-item">
                         <a class="nav-link" href="#"><i ></i> Puestos</a>
+                    </li>
+                    <li @click="menu='tipoContrato'" class="nav-item">
+                        <a class="nav-link" href="i#"><i ></i> Tipo de Contratos</a>
+                    </li>
+                    <li @click="menu=3" class="nav-item">
+                        <a class="nav-link" href="#"><i></i> Incidencias</a>
                     </li>
                     <!--                    
                     <li @click="menu='evento'" class="nav-item">
@@ -69,16 +75,16 @@
                     </li>
 
                 </ul>
-            </li>
+            </li> -->
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> Acceso</a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> Sistema</a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu='usuarios'" class="nav-item">
-                        <a class="nav-link" href="i#"><i class="icon-user"></i> Usuarios</a>
+                        <a class="nav-link" href="i#"><i ></i> Usuarios</a>
                     </li>
                     
                 </ul>
-            </li> -->
+            </li>
             <!-- <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-pie-chart"></i> Graficos</a>
                 <ul class="nav-dropdown-items">
@@ -100,18 +106,18 @@
                     <li @click="menu=1" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-people-carry"></i> Empleados</a>
                     </li>
-                    <li @click="menu='personadependiente2'" class="nav-item">
+                    <!-- <li @click="menu='personadependiente2'" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-people-carry"></i> P. Dependientes</a>
                     </li>
                   
                     <li @click="menu='inasistencia'" class="nav-item">
                         <a class="nav-link" href="i#"><i ></i> Solicitudes</a>
-                    </li>
+                    </li> -->
                     
                 </ul>
             </li>
 
-            <li class="nav-item nav-dropdown">
+            <!-- <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-notebook"></i> Estructura</a>
                 <ul class="nav-dropdown-items">
                  
@@ -120,7 +126,7 @@
                     </li>
                    
                 </ul>
-            </li>
+            </li> -->
 
          
            

@@ -313,6 +313,25 @@
                   />
                 </div>
               </div>
+              <!-- <div> 
+                <h4>Datos Contractuales</h4>
+                <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="text-input"
+                  >Empleado (*)</label
+                >
+                <div class="col-md-9">
+                  <select class="form-control" v-model="empleado_id">
+                    <option value="0" disabled>Seleccione el Empleado</option>
+                    <option
+                      v-for="empleado in arrayEmpleado"
+                      :key="empleado.id"
+                      :value="empleado.id"
+                      v-text="empleado.apellido + ' ' + empleado.nombre"
+                    ></option>
+                  </select>
+                </div>
+              </div>
+              </div> -->
               <!-- <div class="col-md-6">
                 <div class="form-group">
                 
