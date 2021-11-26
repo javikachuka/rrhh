@@ -272,7 +272,7 @@
                 </multiselect>
               </div>
               </div> -->
-              <!-- <div class="col-md-9">
+              <div class="col-md-9">
                 <div class="form-group">
                    <b><label
                     for="data"
@@ -280,12 +280,11 @@
                     action="/data"
                     method="POST"
                     enctype="multipart/form-data"
-                    >Currículum (*)
+                    >Pre-ocupacional (*)
                   </label> </b>
                   <input class="form-control" accept="application/pdf" type="file" @change="getImage" id="data" name="data" />
-                  <b><a :href="curriculum" target="_blank">Ver</a></b>
                 </div>
-              </div> -->
+              </div>
               <div class="col-md-12">
                 <h4>Contacto de Emergencia</h4>
               </div>
@@ -760,8 +759,14 @@ export default {
           });
         })
         .catch(function (error) {
-          console.log(error);
-          toastr.error("Ha ocurrido un error", "Error", { timeOut: 5000 });
+          console.log(error.response)
+          if (error.response.data) {
+            if (error.response.data.error) {
+              toastr.error(error.response.data.error_description, "Error", { timeOut: 5000 });
+            } else {
+              toastr.error("Ha ocurrido un error", "Error", { timeOut: 5000 });
+            }
+          }
         });
     },
     actualizarEmpleado() {
@@ -892,36 +897,10 @@ export default {
       console.log(this.cuil);
       this.inputString = this.cuil.toString();
       if (this.inputString.length == 11) {
-        var Caracters_1_2 =
-          this.inputString.charAt(0) + this.inputString.charAt(1);
-        if (
-          Caracters_1_2 == "20" ||
-          Caracters_1_2 == "23" ||
-          Caracters_1_2 == "24" ||
-          Caracters_1_2 == "27" ||
-          Caracters_1_2 == "30" ||
-          Caracters_1_2 == "33" ||
-          Caracters_1_2 == "34"
-        ) {
-          var Count =
-            this.inputString.charAt(0) * 5 +
-            this.inputString.charAt(1) * 4 +
-            this.inputString.charAt(2) * 3 +
-            this.inputString.charAt(3) * 2 +
-            this.inputString.charAt(4) * 7 +
-            this.inputString.charAt(5) * 6 +
-            this.inputString.charAt(6) * 5 +
-            this.inputString.charAt(7) * 4 +
-            this.inputString.charAt(8) * 3 +
-            this.inputString.charAt(9) * 2 +
-            this.inputString.charAt(10) * 1;
-          var Division = Count / 11;
-          if (Division == Math.floor(Division)) {
-            return true;
-          }
-        }
+        return true
+      } else {
+        return false;
       }
-      return false;
     },
     valida() {
       const campoNumerico = document.getElementById("numero");
@@ -985,10 +964,10 @@ export default {
         this.errorMostrarMsjEmpleado.push(
           "La fecha de nacimiento debe ser menor a la fecha en que se dio de alta el empleado."
         );
-      // if (!this.curriculum)
-      //   this.errorMostrarMsjEmpleado.push(
-      //     "Debe cargar el archivo curriculum del empleado."
-      //   );
+      if (!this.curriculum)
+        this.errorMostrarMsjEmpleado.push(
+          "Debe cargar el archivo con el Pre-ocupacional del empleado."
+        );
       if (this.errorMostrarMsjEmpleado.length) this.errorEmpleado = 1;
 
       return this.errorEmpleado;

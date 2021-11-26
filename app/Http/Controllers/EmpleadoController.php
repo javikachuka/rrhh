@@ -11,7 +11,7 @@ use App\User;
 use Carbon\Carbon;
 use Carbon\CarbonLocale;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 use PDOException;
 
 class EmpleadoController extends Controller
@@ -95,16 +95,21 @@ class EmpleadoController extends Controller
        
         $rules = [
                 'apellido' => 'required|max:100',
-                'nombre' => 'required|max:100',
-                'cuil' => 'required|unique:empleados|max:11'
+                'nombre' => 'required|max:100'
                 
             ];
         $messages = [
                 'cuil.unique' => 'Ya se registro un empleado con el :attribute que ingresó.',
             
             ];
-        $this->validate($request, $rules, $messages);
-        //$cuit = $request->cuil;
+        // $validator = $this->validate($request, $rules, $messages);
+
+        $cuit = $request->cuil;
+        // Check if the cuild exists in DB
+        if (Empleado::where('cuil', $cuit)->exists()) {
+            return response()->json(['error'=>1, 'error_description'=>'Ya existe un empleado con el CUIL ingresado.'], 400);
+        }
+
         //$this->validarCUIT($cuit);
             
         try {
@@ -113,7 +118,6 @@ class EmpleadoController extends Controller
             }
 
             $fileName='';
-            if($request->hasFile($request->curriculum)){
             $exploded = explode(',', $request->curriculum);
             $decoded = base64_decode($exploded[1]);
             if (str_contains($exploded[0], 'pdf')) {
@@ -124,11 +128,6 @@ class EmpleadoController extends Controller
             $fileName = str_random().'.'.$extension;
             $path = public_path().'/'.$fileName;
             file_put_contents($path, $decoded);
-
-                        
-            }
-            //$fileName = $request->file('curriculum')->store('public');
-            //$url = Storage::url($fileName);
                   
 
             $empleado = new Empleado();
@@ -139,7 +138,6 @@ class EmpleadoController extends Controller
             $empleado->fechaNacimiento = $request->fechaNacimiento;
             $empleado->fechaAlta = $request->fechaAlta;
             $empleado->direccion = $request->direccion;
-            //$empleado->curriculum = $request->curriculum;
             $empleado->curriculum = $fileName;
             $empleado->save();
             $competencias = $request->data;//Array de competencias
@@ -203,7 +201,7 @@ class EmpleadoController extends Controller
                 'nombre.required' => 'Debe ingresar el :attribute .',
                 'apellido.required' => 'Debe ingresar el :attribute .',
                 'estadoCivil.required' => 'Debe ingresar el estado civil .',
-                'curriculum.required' => 'Debe ingresar el curriculum .',
+                'curriculum.required' => 'Debe ingresar el Pre-cupacional .',
             
             ];
         $this->validate($request, $rules, $messages);
