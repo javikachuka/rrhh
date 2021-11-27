@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Auditorias</title>
+    <title>Empleados</title>
     <style>
         body {
         /*position: relative;*/
@@ -133,16 +133,16 @@
         <section>
             <div>
                 <table id="facliente">
-                    <thead>                        
-                        <tr>
-                            <th id="fac">Auditorias</th>
+                    <thead style="border: 1px solid white;">                        
+                        <tr style="border: 1px solid white;">
+                            <th id="fac" style="border: 1px solid white;">Empleados</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="border: 1px solid white;">
                   
-                        <tr>
+                        <tr style="border: 1px solid white;">
                             
-                            <th><p id="cliente"> Criterio: {{$criterio}}<br>
+                            <th style="border: 1px solid white;"><p id="cliente"> Criterio: {{$criterio}}<br>
                            
                             Busqueda: {{$buscar}}</p></th>
                            
@@ -166,11 +166,11 @@
                 <table id="facarticulo">
                     <thead>
                         <tr id="fa">
-                        <th>Tabla</th>
-                        <th>Accion</th>
-                            <th>Fecha</th>
-                            <th>Usuario</th>
-                            <th>Num Movimiento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>CUIL</th>
+                        <th>Usuario</th>
+                        <th>Num Movimiento</th>
                            
                            
                         </tr>
@@ -178,13 +178,13 @@
                    
                     <tbody>
                     
-                        @foreach ($auditorias as $aud)
+                        @foreach ($empleados as $emple)
                         <tr>
-                        <td>{{$aud->tabla}}</td>
-                            <td>{{$aud->accion}}</td>
-                            <td>{{$aud->fecha_hora}}</td>
-                            <td>{{$aud->user}}</td>
-                            <td>{{$aud->id}}</td>
+                        <td>{{$emple->nombre}}</td>
+                            <td>{{$emple->apellido}}</td>
+                            <td>{{$emple->cuit}}</td>
+                            <td></td>
+                            <td></td>
                             
                             
                             

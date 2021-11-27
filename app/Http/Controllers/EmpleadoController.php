@@ -13,6 +13,7 @@ use Carbon\CarbonLocale;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PDOException;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class EmpleadoController extends Controller
 {
@@ -358,15 +359,30 @@ class EmpleadoController extends Controller
             $c->delete();
         }
     }
-    public function pdf($buscar, $criterio)
+    public function pdf(Request $request)
     {
+
+        $buscar = $request->buscar;
+        $criterio = $request->criterio;
+
         //$desde = $request->desde;
         //$hasta = $request->hasta;
         /*$auditorias = Auditoria::select('auditorias.id','auditorias.fecha_hora', 'auditorias.accion', 'auditorias.user', 'auditorias.tabla')
         ->whereBetween('auditorias.fecha_hora', [$desde, $hasta])->orderBy('auditorias.id', 'desc')->get();*/
+        
+
+        
         if ($buscar=='') {
-            $empleados = Empleado::select('nombre', 'apellido', 'cuil', 'fechaAlta', 'id')
-            ->orderBy('id', 'desc')->get();
+            if($criterio == 'activo'){
+                $empleados = Empleado::select('nombre', 'apellido', 'cuil', 'fechaAlta', 'id', 'direccion', 'condicion')->where('condicion', 1)
+                ->orderBy('id', 'desc')->get();
+            }elseif($criterio == 'inactivo'){
+                $empleados = Empleado::select('nombre', 'apellido', 'cuil', 'fechaAlta', 'id', 'direccion', 'condicion')->where('condicion', 0)
+                ->orderBy('id', 'desc')->get();
+            }else{
+                $empleados = Empleado::select('nombre', 'apellido', 'cuil', 'fechaAlta', 'id', 'direccion', 'condicion')
+                ->orderBy('id', 'desc')->get();
+            }
         } else {
             $empleados = Empleado::join('contratos', 'empleados.id', '=', 'contratos.empleado_id')
             ->join('puestos', 'contratos.puesto_id', '=', 'puestos.id')
@@ -375,18 +391,17 @@ class EmpleadoController extends Controller
             ->select(
                 'cuil',
                 'direccion',
-                'empleados.nombre as nombreEmpleado',
-                'empleados.apellido as apellidoEmpleado',
+                'empleados.nombre',
+                'empleados.apellido',
                 'fechaAlta',
                 'fechaBaja',
                 'curriculum',
                 'fechaNacimiento',
-                'empleados.condicion as condicion',
-                ''
+                'empleados.condicion as condicion'
             )
               ->orderBy('empleados.nombre', 'desc')
         
-            ->where('empleados.'.$criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->get();
+            ->where('empleados.'.$criterio, 'like', '%'. $buscar . '%')->orderBy('empleados.id', 'desc')->get();
         }
         
         $i=0;
@@ -399,12 +414,13 @@ class EmpleadoController extends Controller
         
     
    
-        $cont = count($empleados);
+        $count = count($empleados);
         $now= Carbon::now();
+
     
-        $pdf = \pdf::loadView('pdf.empleados', ['empleados' => $empleados, 'buscar' => $buscar, 'criterio' => $criterio, 'now' => $now, 'cont' => $cont]);
+        $pdf = PDF::loadView('pdf.empleadosPDF', ['empleados' => $empleados, 'buscar' => $buscar, 'criterio' => $criterio, 'now' => $now, 'count' => $count]);
     
-        return $pdf->download('empleados-.pdf');
+        return $pdf->stream();
     }
  
     public function __invoke(Request $request)

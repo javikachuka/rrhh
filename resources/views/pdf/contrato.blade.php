@@ -3,17 +3,17 @@
 <h3 id="facarticulo" align="center"> <u> Reporte de Contratos</u></h3>
 <section>
     <div>
-        <table id="facliente">
-            <thead>                        
-                <tr>
-                    <th id="fac"></th>
+        <table id="" style="border-style:none;">
+            <thead style="border: 1px solid white;">                        
+                <tr style="border: 1px solid white;">
+                    <th id="" style="border: 1px solid white;"></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="border: 1px solid white;">
           
-                <tr>
+                <tr style="border: 1px solid white;">
                     
-                    <th><p id="cliente"> Criterio: {{$criterio}}<br>
+                    <th style="border: 1px solid white;"><p id="cliente"> Criterio: {{$criterio}}<br>
                    
                     Busqueda: {{$buscar}}</p></th>
                    

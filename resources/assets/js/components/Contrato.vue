@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="card-body rounded">
-          <!-- <form action="/contrato/pdf" method="get">
+          <form action="/contrato/pdf" method="get">
             <div class="form-group row">
               <div class="col-6">
                 <div class="input-group">
@@ -65,7 +65,7 @@
                     @click="listarTabla(1, buscar, criterio)"
                     class="btn btn-primary"
                   >
-                    <i class="fa fa-search"></i> Buscar
+                    <i class="fa fa-search"></i>
                   </button>
                 </div>
               </div>
@@ -73,13 +73,13 @@
                 <button
                   type="submit"
                   @click="listarTabla(1, buscar, criterio)"
-                  class="btn btn-warning"
+                  class="btn btn-danger float-right"
                 >
-                  <i class="fa fa-search"></i> Reporte
+                  Generar <i class="fa fa-file"></i>
                 </button>
               </div>
             </div>
-          </form> -->
+          </form>
           <table class="table table-bordered table-striped table-sm rounded">
             <thead>
               <tr>

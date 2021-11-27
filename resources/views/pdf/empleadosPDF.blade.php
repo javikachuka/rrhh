@@ -1,7 +1,7 @@
 @extends('pdf.layouts')
 @section('content')
 <br/>
-<h3 id="facarticulo" align="left"> <u> Reporte de Tipo Contratos</u></h3>
+<h3 id="facarticulo" align="left"> <u> Reporte de Empleados</u></h3>
 <section>
     <div>
         <table id="" style="border-style:none;" >
@@ -37,20 +37,24 @@
     <table id="facarticulo" >
         <thead class="" style="background-color:white ; color:black;">
             <tr id="">
-                <th>ID Tipo</th>
                 <th>Nombre</th>
-                <th>Cantidad Contratos</th>
+                <th>Apellido</th>
+                <th>CUIL</th>
+                <th>Direccion</th>
+                <th>Estado</th>
             </tr>
         </thead>
         <tbody style="background-color:white ; color:black;">
             @if ($count>0)
 
-            @foreach ($tipoContratos as $tipoContrato)
-            <tr style="text-align: right">
-
-                <td>{{$tipoContrato->id}} </td>
-                <td>{{$tipoContrato->nombre}}</td>
-                <td>{{count($tipoContrato->contratos)}}</td>
+            @foreach ($empleados as $emple)
+            <tr>
+                <td>{{$emple->nombre}}</td>
+                <td>{{$emple->apellido}}</td>
+                <td>{{$emple->cuil}}</td>
+                <td>{{$emple->direccion}}</td>
+                <td>{{$emple->condicion == 1 ? 'Activo' : 'Inactivo'}}</td>
+                
             </tr>
             @endforeach
             @endif

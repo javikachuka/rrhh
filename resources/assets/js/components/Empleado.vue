@@ -21,14 +21,17 @@
         <!-- Listado-->
         <template v-if="listado == 1">
           <div class="card-body rounded">
-            <!-- <div class="form-group row">
+            <form action="/empleado/pdf" method="get">
+            <div class="form-group row">
               <div class="col-md-6">
                 <div class="input-group">
-                  <select class="form-control col-md-3" v-model="criterio">
+                  <select class="form-control col-md-3" v-model="criterio" name="criterio">
                     <option value="nombre">Nombre</option>
                     <option value="apellido">Apellido</option>
                     <option value="enlicencia">En Licencia</option>
                     <option value="trabajando">Trabajando</option>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
                     <option value="cuil">Cuil</option>
                   </select>
                   <input
@@ -36,18 +39,28 @@
                     v-model="buscar"
                     @keyup.enter="listarEmpleado(1, buscar, criterio)"
                     class="form-control"
+                    name="buscar"
                     placeholder="Texto a buscar"
                   />
                   <button
-                    type="submit"
+                    type="button"
                     @click="listarEmpleado(1, buscar, criterio)"
                     class="btn btn-primary"
                   >
-                    <i class="fa fa-search"></i> Buscar
+                    <i class="fa fa-search"></i>
                   </button>
                 </div>
               </div>
-            </div> -->
+              <div class="col">
+                <button
+                  type="submit"
+                  class="btn btn-danger float-right"
+                >
+                  Generar <i class="fa fa-file"></i>
+                </button>
+              </div>
+            </div>
+            </form>
             <div class="table-responsive rounded">
               <table class="table table-bordered table-striped table-sm rounded">
                 <thead>

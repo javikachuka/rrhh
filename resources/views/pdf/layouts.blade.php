@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Auditorias</title>
+    <title>Reportes</title>
     <style>
         body {
         /*position: relative;*/
@@ -28,6 +28,8 @@
         margin-top: 1%;
         margin-left: 2%;
         margin-right: 2%;
+        width: 45px;
+        height: 45px;
         }
 
         #imagen{
@@ -71,6 +73,7 @@
         border-collapse: collapse;
         border-spacing: 0;
         margin-bottom: 15px;
+        border-style: none;  
         }
 
         #fac, #fv, #fa{
@@ -82,7 +85,13 @@
         padding: 20px;
         background: #2183E3;
         text-align: left;
-        border-bottom: 1px solid #FFFFFF;  
+        border-style: none;  
+        }
+
+        
+
+        #facliente tbody{
+            border-style: none;  
         }
 
         #facvendedor{
@@ -121,11 +130,11 @@
         <header>
        
             <div id="logo">
-                <img src="img/logo.png" alt="incanatoIT" id="imagen">
+                <!-- <img src="img/logo.png" alt="incanatoIT" id="imagen" > -->
             </div>
             <div id="datos">
                 <p id="encabezado">
-                    <b>Sistemas de Recursos Humanos</b><br>
+                    <b>Sistemas de Nóminas</b><br>
                 </p>
             </div>
         
