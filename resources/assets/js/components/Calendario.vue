@@ -86,7 +86,6 @@ export default {
         locale: "es",
        eventClick: this.showEvent,
         addingMode: true
-     
       },
      
       newEvent: {
@@ -214,7 +213,7 @@ export default {
           me.calendarOptions.events = respuesta.data;
          console.log(respuesta.data);
         })
-       //.then(resp => (this.events = resp.data.data))
+       .then(resp => (this.events = resp.data.data))
         
         .catch(function (error) {
           console.log(error);

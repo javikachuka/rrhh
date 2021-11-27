@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Calendar;
 use Illuminate\Http\Request;
 use App\Http\Resources\CalendarResource;
+use App\SolicitudInasistencia;
 use Symfony\Component\HttpFoundation\Response;
 use Carbon\Carbon;
 use PDOException;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class CalendarController extends Controller
@@ -20,7 +22,30 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        return CalendarResource::collection(Calendar::all());
+        $return = new Collection();
+        $index  = 1;
+        $requests = SolicitudInasistencia::select(DB::raw("CONCAT(solicitudes_inasistencias.motivo,' ',empleados.nombre,' ',empleados.apellido) as event_name"), 
+        DB::raw("DATE_FORMAT(solicitudes_inasistencias.desde, '%Y-%m-%d') as start_date"), DB::raw("DATE_FORMAT(solicitudes_inasistencias.hasta, '%Y-%m-%d') as end_date",
+        'solicitudes_inasistencias.created_at', 'solicitudes_inasistencias.updated_at'))
+        ->join('empleados','solicitudes_inasistencias.empleado_id','empleados.id')
+        ->where('aprobado', 1)
+        ->get();
+
+        $events   = Calendar::all();
+
+        foreach($requests as $r) {
+            $r->id = $index;
+            $return->push($r);
+            $index++;
+        }
+
+        foreach($events as $e) {
+            $e->id = $index;
+            $return->push($e);
+            $index++;
+        }
+
+        return CalendarResource::collection($return);
     }
 
     /**

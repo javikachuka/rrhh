@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="container mt-2">
+  <Fullcalendar :options="calendarOptions" />
     <div class="row justify-content-center">
       <div class="row">
         <h1>Bienvenido</h1>
@@ -32,9 +33,6 @@
             </div>
           </div>
         </form>
-      </div>
-      <div class="col-md-8">
-        <!-- <Fullcalendar :options="calendarOptions" /> -->
       </div>
     </div>
   </div>
