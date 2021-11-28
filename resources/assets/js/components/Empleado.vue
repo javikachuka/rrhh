@@ -270,22 +270,8 @@
                 </div>
               </div>
 
-              <!-- <div class="col-md-9">
-                <div class="form-group">
-                 <b><label>Competencias</label> </b>
-
-                <multiselect
-                  v-model="competenciasId"
-                  :options="arrayCompetencias"
-                  :multiple="true"
-                  label="nombre"
-                  track-by="id"
-                  placeholder="Seleccione una o más competencias"
-                >
-                </multiselect>
-              </div>
-              </div> -->
-              <div class="col-md-9">
+              <div class="col-md-9 mt-2">
+              <h4>Salud</h4>
                 <div class="form-group">
                    <b><label
                     for="data"
@@ -298,7 +284,7 @@
                   <input class="form-control" accept="application/pdf" type="file" @change="getImage" id="data" name="data" />
                 </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12 mt-2">
                 <h4>Contacto de Emergencia</h4>
               </div>
               <div class="col-md-6">
@@ -324,6 +310,22 @@
                     maxlength="10"
                   />
                 </div>
+              </div>
+                <div class="col-md-9 mt-2">
+                <h4>Habilidades</h4>
+                <div class="form-group">
+                 <b><label>Competencias</label> </b>
+
+                <multiselect
+                  v-model="competenciasId"
+                  :options="arrayCompetencias"
+                  :multiple="true"
+                  label="nombre"
+                  track-by="id"
+                  placeholder="Seleccione una o más competencias"
+                >
+                </multiselect>
+              </div>
               </div>
               <!-- <div> 
                 <h4>Datos Contractuales</h4>

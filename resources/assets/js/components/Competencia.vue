@@ -48,16 +48,16 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <button type="button" @click="abrirModal('competencia','actualizar',competencia)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('competencia','actualizar',competencia)" class="btn btn-dark btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
                                         <template v-if="competencia.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCompetencia(competencia.id)">
+                                            <button type="button" class="btn btn-dark btn-sm" @click="desactivarCompetencia(competencia.id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarCompetencia(competencia.id)">
+                                            <button type="button" class="btn btn-dark btn-sm" @click="activarCompetencia(competencia.id)">
                                                 <i class="icon-check"></i>
                                             </button>
                                         </template>

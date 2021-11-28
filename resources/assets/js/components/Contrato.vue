@@ -156,6 +156,13 @@
                       <i class="icon-check"></i>
                     </button>
                   </template>
+                    <button
+                      type="button"
+                      class="btn btn-dark btn-sm"
+                      @click="abrirModal('evaluacion', '', contrato)"
+                    >
+                      <i class="icon-list"></i>
+                    </button>
                 </td>
               </tr>
             </tbody>
@@ -449,6 +456,40 @@
       <!-- /.modal-dialog -->
     </div>
     <!--Fin del modal-->
+    <!--Inicio del modal agregar/actualizar evaluation-->
+    <div id="nico"  class="modal fade rounded ja" tabindex="-2" :class="{mostrartwo: modaltwo}" role="dialog" aria-labelledby="myModalLabel2" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-primary modal-lg" role="document">
+            <div class="modal-content rounded">
+                <div class="modal-header rounded">
+                    <h4 class="modal-title" v-text="tituloModal"></h4>
+                    <button type="button" class="close" @click="cerrarModal()" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body rounded">
+                    <form id="modal-form" action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">Detalle (*)</label>
+                            <div class="col-md-9">
+                                <textarea type="text" v-model="evaluacion" class="form-control rounded" placeholder="Detalle" required>
+                                </textarea>
+                                
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
+                    <button type="button" v-if="evaluacion" class="btn btn-primary" @click="updateEvaluation()">Guardar</button>
+                    <button type="button" v-if="!evaluacion" class="btn btn-primary" @click="updateEvaluation()">Actualizar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!--Fin del modal-->
   </main>
 </template>
 
@@ -474,6 +515,7 @@ export default {
       idempleado: 0,
       idTipoContrato: 0,
       modal: 0,
+      modaltwo: 0,
       tituloModal: "",
       tipoAccion: 0,
       errorComponente: 0,
@@ -758,6 +800,28 @@ export default {
         }
       });
     },
+    updateEvaluation() {
+      console.log("prueba");
+
+      let me = this;
+      axios
+        .post("/contrato/evaluation", {
+          evaluacion: this.evaluacion,
+          id: this.id,
+        })
+        .then(function (response) {
+          console.log(response);
+          me.cerrarModal();
+          me.listarTabla(1, "", "nombre");
+          toastr.success("Se ha agregado la evaluación", "Actualizado", {
+            timeOut: 5000,
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+          toastr.error("Ha ocurrido un error", "Error", { timeOut: 5000 });
+        });
+    },
     activarContrato(id) {
       swal({
         title: "Esta seguro de activar este contrato?",
@@ -839,6 +903,7 @@ export default {
     },
     cerrarModal() {
       this.modal = 0;
+      this.modaltwo = 0;
       this.tituloModal = "";
       this.nombre = "";
       this.descripcion = "";
@@ -858,6 +923,7 @@ export default {
         case "contrato": {
           switch (accion) {
             case "registrar": {
+              this.modaltwo = 0;
               this.modal = 1;
               this.tituloModal = "Registrar Contrato";
               this.contrato_id = "";
@@ -875,6 +941,7 @@ export default {
               break;
             }
             case "actualizar": {
+              this.modaltwo = 0;
               this.modal = 1;
               this.tituloModal = "Actualizar contrato";
               this.tipoAccion = 2;
@@ -895,6 +962,13 @@ export default {
             }
           }
         }
+        case "evaluacion": {
+          this.modaltwo = 1;
+          this.tituloModal = "Evaluacion";
+          this.evaluacion = data["evaluacion"];
+          this.id = data["id"];
+          break;
+        }
       }
     },
   },
@@ -912,6 +986,12 @@ export default {
   position: absolute !important;
 }
 .mostrar {
+  display: list-item !important;
+  opacity: 1 !important;
+  position: absolute !important;
+  background-color: #3c29297a !important;
+}
+.mostrartwo {
   display: list-item !important;
   opacity: 1 !important;
   position: absolute !important;
