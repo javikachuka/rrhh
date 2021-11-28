@@ -159,7 +159,7 @@
                     <button
                       type="button"
                       class="btn btn-dark btn-sm"
-                      @click="abrirModal('evaluacion', '', contrato)"
+                      @click="abrirModal2('evaluacion', '', contrato)"
                     >
                       <i class="icon-list"></i>
                     </button>
@@ -457,7 +457,7 @@
     </div>
     <!--Fin del modal-->
     <!--Inicio del modal agregar/actualizar evaluation-->
-    <div id="nico"  class="modal fade rounded ja" tabindex="-2" :class="{mostrartwo: modaltwo}" role="dialog" aria-labelledby="myModalLabel2" style="display: none;" aria-hidden="true">
+    <div id="nico"  class="modal rounded" tabindex="-2" :class="{mostrartwo: modaltwo}" role="dialog" aria-labelledby="myModalLabel2" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-primary modal-lg" role="document">
             <div class="modal-content rounded">
                 <div class="modal-header rounded">
@@ -467,7 +467,7 @@
                     </button>
                 </div>
                 <div class="modal-body rounded">
-                    <form id="modal-form" action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form id="modal-form2" action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="text-input">Detalle (*)</label>
                             <div class="col-md-9">
@@ -923,7 +923,6 @@ export default {
         case "contrato": {
           switch (accion) {
             case "registrar": {
-              this.modaltwo = 0;
               this.modal = 1;
               this.tituloModal = "Registrar Contrato";
               this.contrato_id = "";
@@ -941,7 +940,6 @@ export default {
               break;
             }
             case "actualizar": {
-              this.modaltwo = 0;
               this.modal = 1;
               this.tituloModal = "Actualizar contrato";
               this.tipoAccion = 2;
@@ -962,6 +960,11 @@ export default {
             }
           }
         }
+      }
+    },
+    abrirModal2(modelo, accion, data = []) {
+      this.otroMensaje=[];
+      switch (modelo) {
         case "evaluacion": {
           this.modaltwo = 1;
           this.tituloModal = "Evaluacion";
@@ -970,7 +973,7 @@ export default {
           break;
         }
       }
-    },
+    }
   },
   mounted() {
     this.listarTabla(1, this.buscar, this.criterio);
