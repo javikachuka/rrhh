@@ -6,13 +6,15 @@
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card mt-2">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Competencias
-                        <button type="button" @click="abrirModal('competencia','registrar')" class="btn btn-secondary">
-                            <i class="icon-plus"></i>&nbsp;Nueva
-                        </button>
+                        <div class="row justify-content-between rounded">
+                            <h3>Competencias</h3>
+                            <button type="button" @click="abrirModal('competencia','registrar')" class="btn btn-secondary btn-sm">
+                                <i class="icon-plus"></i>&nbsp;Nueva
+                            </button>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
@@ -24,7 +26,7 @@
                                     <button type="submit" @click="listarCompetencia(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <table class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
