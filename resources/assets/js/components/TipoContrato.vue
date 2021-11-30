@@ -29,7 +29,7 @@
                   >
                     <option value="nombre">Nombre</option>
                     <option value="activo">Activo</option>
-                    <option value="desactivado">Desativado</option>
+                    <option value="desactivado">Inactivo</option>
                   </select>
                   <input
                     name="buscar"

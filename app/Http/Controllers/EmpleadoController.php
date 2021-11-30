@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empleado;
+use App\Departamento;
+use App\Area;
 use App\CompetenciaEmpleado;
 use App\ContactoEmergencia;
 use Exception;
@@ -35,7 +37,29 @@ class EmpleadoController extends Controller
             } elseif ($criterio=='trabajando') {
                 $empleados= Empleado::join('solicitudes_inasistencias', 'empleados.id', '=', 'solicitudes_inasistencias.empleado_id')
                 ->where('solicitudes_inasistencias.desde', '>', Carbon::now())->Where('solicitudes_inasistencias.hasta', '<', Carbon::now())->orWhere('aprobado', false);
-            } elseif ($buscar!='') {
+            } elseif ($criterio=='activo'){
+                $empleados= Empleado::join('solicitudes_inasistencias', 'empleados.id', '=', 'solicitudes_inasistencias.empleado_id')->where('empleados.condicion', true);
+            } elseif($criterio =='inactivo'){
+                $empleados= Empleado::join('solicitudes_inasistencias', 'empleados.id', '=', 'solicitudes_inasistencias.empleado_id')->where('empleados.condicion', false);
+            }  elseif($criterio =='puestos'){
+                $empleados= Empleado::join('contratos', 'empleados.id', '=', 'contratos.empleado_id')->where('contratos.puesto_id', $request->puesto_id_filtro);
+            }   elseif($criterio =='departamentos'){
+
+                $empleados = Departamento::join('puestos', 'departamentos.id', '=', 'puestos.departamento_id')
+                            ->join('contratos', 'puestos.id', '=', 'contratos.puesto_id')
+                            ->join('empleados', 'contratos.empleado_id', '=', 'empleados.id')
+                            ->where('departamentos.id', $request->depto_id_filtro);
+
+
+            } elseif($criterio == 'areas') {
+                $empleados = Departamento::join('areas', 'departamentos.area_id', '=', 'areas.id')
+                            ->join('puestos', 'departamentos.id', '=', 'puestos.departamento_id')
+                            ->join('contratos', 'puestos.id', '=', 'contratos.puesto_id')
+                            ->join('empleados', 'contratos.empleado_id', '=', 'empleados.id')
+                            ->where('areas.id', $request->area_id_filtro);
+            }
+            
+            elseif ($buscar!='') {
                 $empleados= $empleados->where('empleados.'.$criterio, 'like', '%'. $buscar . '%');
             }
            
@@ -52,6 +76,10 @@ class EmpleadoController extends Controller
             } elseif ($criterio=='trabajando') {
                 $empleados= Empleado::join('solicitudes_inasistencias', 'empleados.id', '=', 'solicitudes_inasistencias.empleado_id')
                 ->where('solicitudes_inasistencias.desde', '>', Carbon::now())->Where('solicitudes_inasistencias.hasta', '<', Carbon::now())->orWhere('aprobado', false)->where('empleados.id', $solicitante);
+            } elseif ($criterio=='activo'){
+                $empleados= Empleado::join('solicitudes_inasistencias', 'empleados.id', '=', 'solicitudes_inasistencias.empleado_id')->where('condicion', true)->where('empleados.id', $solicitante);
+            } elseif($criterio =='inactivo'){
+                $empleados= Empleado::join('solicitudes_inasistencias', 'empleados.id', '=', 'solicitudes_inasistencias.empleado_id')->where('condicion', false)->where('empleados.id', $solicitante);
             } elseif ($buscar!='') {
                 $empleados= $empleados->where('empleados.'.$criterio, 'like', '%'. $buscar . '%');
             }
@@ -379,7 +407,25 @@ class EmpleadoController extends Controller
             }elseif($criterio == 'inactivo'){
                 $empleados = Empleado::select('nombre', 'apellido', 'cuil', 'fechaAlta', 'id', 'direccion', 'condicion')->where('condicion', 0)
                 ->orderBy('id', 'desc')->get();
-            }else{
+            }  elseif($criterio =='puestos'){
+                $empleados= Empleado::join('contratos', 'empleados.id', '=', 'contratos.empleado_id')->where('contratos.puesto_id', $request->puesto_id_filtro)->orderBy('empleados.id', 'desc')->get();
+            }  elseif($criterio =='departamentos'){
+
+                $empleados = Departamento::join('puestos', 'departamentos.id', '=', 'puestos.departamento_id')
+                            ->join('contratos', 'puestos.id', '=', 'contratos.puesto_id')
+                            ->join('empleados', 'contratos.empleado_id', '=', 'empleados.id')
+                            ->where('departamentos.id', $request->depto_id_filtro)->get();
+
+
+            } elseif($criterio == 'areas') {
+                $empleados = Departamento::join('areas', 'departamentos.area_id', '=', 'areas.id')
+                            ->join('puestos', 'departamentos.id', '=', 'puestos.departamento_id')
+                            ->join('contratos', 'puestos.id', '=', 'contratos.puesto_id')
+                            ->join('empleados', 'contratos.empleado_id', '=', 'empleados.id')
+                            ->where('areas.id', $request->area_id_filtro)->get();
+            }
+            
+            else{
                 $empleados = Empleado::select('nombre', 'apellido', 'cuil', 'fechaAlta', 'id', 'direccion', 'condicion')
                 ->orderBy('id', 'desc')->get();
             }

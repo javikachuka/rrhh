@@ -25,7 +25,7 @@
             <div class="form-group row">
               <div class="col-md-6">
                 <div class="input-group">
-                  <select class="form-control col-md-3" v-model="criterio" name="criterio">
+                  <select class="form-control col-md-3" v-model="criterio" name="criterio" @change="onChangeSelect($event)">
                     <option value="nombre">Nombre</option>
                     <option value="apellido">Apellido</option>
                     <option value="enlicencia">En Licencia</option>
@@ -33,8 +33,12 @@
                     <option value="activo">Activo</option>
                     <option value="inactivo">Inactivo</option>
                     <option value="cuil">Cuil</option>
+                    <option value="puestos">Puestos</option>
+                    <option value="departamentos">Departamentos</option>
+                    <option value="areas">Areas</option>
                   </select>
                   <input
+                    v-if="criterio == 'nombre' || criterio == 'apellido' || criterio == 'cuil' "
                     type="text"
                     v-model="buscar"
                     @keyup.enter="listarEmpleado(1, buscar, criterio)"
@@ -42,6 +46,54 @@
                     name="buscar"
                     placeholder="Texto a buscar"
                   />
+                  <select
+                  name="puesto_id_filtro"
+                    class="form-control col-md-3"
+                    v-model="puesto_id_filtro"
+                    v-if="criterio == 'puestos'"
+                  >
+                    <option value="0" disabled>Seleccione</option>
+                    <option
+                      v-for="tipoContrato in arrayPuestos"
+                      :key="tipoContrato.id"
+                      :value="tipoContrato.id"
+                      v-text="
+                        tipoContrato.nombre
+                      "
+                    ></option>
+                  </select>
+                  <select
+                  name="depto_id_filtro"
+                    class="form-control col-md-3"
+                    v-model="depto_id_filtro"
+                    v-if="criterio == 'departamentos'"
+                  >
+                    <option value="0" disabled>Seleccione</option>
+                    <option
+                      v-for="tipoContrato in arrayDepartamentos"
+                      :key="tipoContrato.id"
+                      :value="tipoContrato.id"
+                      v-text="
+                        tipoContrato.nombre
+                      "
+                    ></option>
+                  </select>
+                  <select
+                  name="area_id_filtro"
+                    class="form-control col-md-3"
+                    v-model="area_id_filtro"
+                    v-if="criterio == 'areas'"
+                  >
+                    <option value="0" disabled>Seleccione</option>
+                    <option
+                      v-for="tipoContrato in arrayAreas"
+                      :key="tipoContrato.id"
+                      :value="tipoContrato.id"
+                      v-text="
+                        tipoContrato.nombre
+                      "
+                    ></option>
+                  </select>
                   <button
                     type="button"
                     @click="listarEmpleado(1, buscar, criterio)"
@@ -527,9 +579,15 @@ export default {
     return {
       empleado_id: 0,
       idincidencia: 0,
+      puesto_id_filtro: 0,
+      depto_id_filtro: 0,
+      area_id_filtro: 0,
       arrayCompetencias: [],
       arrayEliminar: [],
       competenciasId: [],
+      arrayPuestos: [] ,
+      arrayDepartamentos: [] ,
+      arrayAreas: [] ,
       nombreContacto: "",
       estadoCivil: "",
       telefono1: "",
@@ -620,7 +678,12 @@ export default {
         "&buscar=" +
         buscar +
         "&criterio=" +
-        criterio;
+        criterio ;
+        console.log(url);
+      url = me.puesto_id_filtro != 0 ? url + "&puesto_id_filtro="+ me.puesto_id_filtro : url + '';
+      url = me.depto_id_filtro != 0 ? url + "&depto_id_filtro="+ me.depto_id_filtro : url + '';
+      url = me.area_id_filtro != 0 ? url + "&area_id_filtro="+ me.area_id_filtro : url + '';
+      console.log(url);
       axios
         .get(url)
         .then(function (response) {
@@ -646,6 +709,66 @@ export default {
           //q: search
           me.arrayIncidencia = respuesta.incidencias;
           console.log(response.data.incidencias[0].nombre);
+          //loading(false)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    onChangeSelect(event){
+      let me = this;
+      console.log(event.target.value);
+      me.puesto_id_filtro = 0;
+      me.depto_id_filtro = 0;
+      me.area_id_filtro = 0;
+      console.log(me.puesto_id_filtro);
+
+    },
+    selectPuestos() {
+      let me = this;
+      //loading(true)
+      var url = "/puesto/selectPuesto";
+      axios
+        .get(url)
+        .then(function (response) {
+          let respuesta = response.data;
+          //q: search
+          me.arrayPuestos = respuesta.puestos;
+          console.log("select Empleado");
+          //loading(false)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    selectDepartamentos() {
+      let me = this;
+      //loading(true)
+      var url = "/departamento/selectDepartamento";
+      axios
+        .get(url)
+        .then(function (response) {
+          let respuesta = response.data;
+          //q: search
+          me.arrayDepartamentos = respuesta.departamentos;
+          console.log("select Empleado");
+          //loading(false)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    selectAreas() {
+      let me = this;
+      //loading(true)
+      var url = "/area/selectArea";
+      axios
+        .get(url)
+        .then(function (response) {
+          let respuesta = response.data;
+          //q: search
+          me.arrayAreas = respuesta.areas;
+          console.log("select Empleado");
           //loading(false)
         })
         .catch(function (error) {
@@ -1148,6 +1271,9 @@ export default {
     this.listarEmpleado(1, this.buscar, this.criterio);
     this.selectIncidencia();
     this.selectCompetencia();
+    this.selectPuestos();
+    this.selectDepartamentos();
+    this.selectAreas();
   },
 };
 </script>
