@@ -483,4 +483,16 @@ class ContratoController extends Controller
         $pdf->getDomPDF()->get_canvas()->page_text(500, $y, "Pagina {PAGE_NUM} de {PAGE_COUNT}", null, 10, array(0, 0, 0));
         return $pdf->stream();
     }
+
+    public function updateEvaluation (Request $request)
+    {
+        if (!$request->ajax()) {
+            return redirect('/');
+        }
+
+        $contrato = Contrato::find($request->id);
+        $contrato->evaluacion = $request->evaluacion;
+        $contrato->save();
+        return 0;
+    }
 }

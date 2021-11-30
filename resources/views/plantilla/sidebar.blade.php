@@ -26,9 +26,9 @@
                     <li @click="menu='inasistencia'" class="nav-item">
                         <a class="nav-link" href="#"><i ></i> Solicitudes</a>
                     </li>
-                    <!-- <li @click="menu='competencia'" class="nav-item">
-                        <a class="nav-link" href="i#"><i ></i> Competencias</a>
-                    </li> -->
+                    <li @click="menu='competencia'" class="nav-item">
+                        <a class="nav-link" href="#"><i ></i> Competencias</a>
+                    </li>
                 </ul>
             </li>
 

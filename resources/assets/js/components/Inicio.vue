@@ -1,11 +1,7 @@
 <template>
   <div class="container mt-2">
   <Fullcalendar :options="calendarOptions" />
-    <div class="row justify-content-center">
-      <div class="row">
-        <h1>Bienvenido</h1>
-      </div>
-      <br />
+    <!--<div class="row justify-content-center">
       <div class="col-md-8">
         <form @submit.prevent v-if="newEvent.event_name">
           <div class="row">
@@ -34,7 +30,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
