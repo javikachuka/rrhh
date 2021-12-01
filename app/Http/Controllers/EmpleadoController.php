@@ -87,6 +87,11 @@ class EmpleadoController extends Controller
             $empleados=$empleados->select('empleados.*')->orderBy('empleados.nombre', 'desc')->paginate(10);
         }
        
+        foreach ($empleados as $e) {
+            if (isset($e->curriculum) && !empty($e->curriculum)) {
+                $e->curriculum = public_path().'\\'.$e->curriculum;
+            }
+        }
        
         return [
             'pagination' => [
@@ -241,7 +246,7 @@ class EmpleadoController extends Controller
             DB::beginTransaction();
 
             $empleado = Empleado::findOrFail($request->id);
-            if ($request->hasFile($request->curriculum)) {
+            if ($request->curriculum) {
                 $exploded = explode(',', $request->curriculum);
                 $decoded = base64_decode($exploded[1]);
                 if (str_contains($exploded[0], 'pdf')) {

@@ -411,6 +411,7 @@
                     id="data"
                     name="data"
                   />
+                  <b><a v-if="contrato" :href="contrato">Ver Contrato</a></b>
                 </div>
               </div>
 

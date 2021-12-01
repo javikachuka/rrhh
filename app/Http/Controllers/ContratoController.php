@@ -57,6 +57,12 @@ class ContratoController extends Controller
          
         $contratos= $contratos->orderBy('contratos.nombre', 'desc')->paginate(10);
          
+        foreach ($contratos as $c) {
+            if (isset($c->contrato) && !empty($c->contrato)) {
+                $c->contrato = public_path().'\\'.$c->contrato;
+            }
+        }
+
         return [
             'pagination' => [
                 'total'        => $contratos->total(),
@@ -333,7 +339,7 @@ class ContratoController extends Controller
                 $contratoViejo->save();
             }
 
-            if ($request->hasFile($request->contrato)) {
+            if ($request->contrato) {
                 $exploded = explode(',', $request->contrato);
                 $decoded = base64_decode($exploded[1]);
                 if (str_contains($exploded[0], 'pdf')) {

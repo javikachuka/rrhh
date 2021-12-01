@@ -334,6 +334,9 @@
                     >Pre-ocupacional (*)
                   </label> </b>
                   <input class="form-control" accept="application/pdf" type="file" @change="getImage" id="data" name="data" />
+                  <template>
+                  <b><a v-if="curriculum" :href="curriculum">Ver Pre-ocupacional</a></b>
+                  </template>
                 </div>
               </div>
               <div class="col-md-12 mt-2">
@@ -1201,7 +1204,7 @@ export default {
       me.fechaNacimiento = data["fechaNacimiento"];
       me.fechaAlta = data["fechaAlta"];
       me.fechaBaja = data["fechaBaja"];
-      this.curriculum = data["curriculum"];
+      me.curriculum = data["curriculum"];
       var url = "/empleado/findCompetencias?id=" + data["id"];
       axios
         .get(url)
